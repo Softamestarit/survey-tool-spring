@@ -1,4 +1,4 @@
-package fi.haagahelia.survey.web;
+package fi.haagahelia.surveytool.web;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,6 +14,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import fi.haagahelia.surveytool.domain.Question;
+import fi.haagahelia.surveytool.domain.QuestionRepository;
+import fi.haagahelia.surveytool.domain.Survey;
+import fi.haagahelia.surveytool.domain.SurveyRepository;
 
 @Controller
 public class SurveyController {
@@ -38,9 +43,7 @@ public class SurveyController {
 	
 	// REST api-call that gets all questions based in surveyId and returns them as JSON
 	@GetMapping("/questions/{id}")
-	public @ResponseBody List<Question> findQuestions(@PathVariable("id") Long surveyId){
+	public @ResponseBody Optional<Question> findQuestions(@PathVariable("id") Long surveyId){
 		return (List<Question>) questionRepository.findById(surveyId);
 	}
-		
-	
 }
