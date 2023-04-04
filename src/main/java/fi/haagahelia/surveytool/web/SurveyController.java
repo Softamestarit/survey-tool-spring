@@ -35,10 +35,11 @@ public class SurveyController {
 		return (List<Survey>) surveyRepository.findAll();
 	}
 	
+	
 	@GetMapping("/add-survey")
 	public @ResponseBody List<Survey> addNewSurvey(Model model){
 		model.addAttribute("survey", new Survey());
-		return "addSurvey";
+		return "add-survey";
 	}
 	
 	@PostMapping("/save-survey")
