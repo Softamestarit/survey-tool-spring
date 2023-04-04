@@ -51,12 +51,6 @@ public class SurveyController {
 		return "redirect:../surveys";
 	}
 	
-	// REST api-call which gets all questions and returns them as JSON
-	@GetMapping("/questions")
-	public @ResponseBody List<Question> questionListRest() {
-		return (List<Question>) questionRepository.findAll();
-	}
-	
 	// REST api-call that gets all questions based in surveyId and returns them as JSON
 	@GetMapping("/surveys/{id}")
 	public @ResponseBody Optional<Survey> findSurvey(@PathVariable("id") Long surveyId){
