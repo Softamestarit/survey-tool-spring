@@ -41,17 +41,10 @@ public class SurveyController {
 	public @ResponseBody List<Question> questionListRest() {
 		return (List<Question>) questionRepository.findAll();
 	}
-	
-	// REST api-call that gets all questions based in surveyId and returns them as JSON
-	@GetMapping("/questions/{id}")
-	public @ResponseBody List<Question> findQuestions(@PathVariable("id") Long surveyId){
-		return (List<Question>) questionRepository.findById(surveyId)surveyId;
-	}
 		
 	@GetMapping("/add-survey")
 	public String addSurvey(Model model){
     	model.addAttribute("questions", new ArrayList<Question>());
         return "add-survey";
     }
-	
 }
