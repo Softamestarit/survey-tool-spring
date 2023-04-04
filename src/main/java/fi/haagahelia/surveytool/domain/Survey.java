@@ -13,15 +13,15 @@ import jakarta.persistence.OneToMany;
 public class Survey {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long surveyId;
 	private String name;
-	
+
 	@OneToMany
-	@JoinColumn(name= "questionId")
+	@JoinColumn(name = "questionId")
 	private List<Question> questions;
-	
-	//Constructors
+
+	// Constructors
 	public Survey(Long surveyId, String name, List<Question> questions) {
 		super();
 		this.surveyId = surveyId;
@@ -35,11 +35,16 @@ public class Survey {
 		this.questions = questions;
 	}
 
+	public Survey(String name) {
+		super();
+		this.name = name;
+	}
+
 	public Survey() {
 		super();
 	}
 
-	//Getters
+	// Getters
 	public Long getSurveyId() {
 		return surveyId;
 	}
@@ -51,8 +56,8 @@ public class Survey {
 	public List<Question> getQuestions() {
 		return questions;
 	}
-	
-	//Setters
+
+	// Setters
 	public void setSurveyId(Long surveyId) {
 		this.surveyId = surveyId;
 	}
@@ -69,5 +74,5 @@ public class Survey {
 	public String toString() {
 		return "surveyId=" + surveyId + ", name=" + name + ", questions=" + questions + "]";
 	}
-		
+
 }
