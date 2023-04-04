@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <script type="text/javascript" th:src="@{/js/add-survey-script.js}"></script>
+    <title>Survey tool</title>
+</head>
+<body>
+<h1>Survey Tool</h1>
+<h2>Add a Survey</h2>
+<form th:object="${model}" th:action="@{/submit-survey}" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name">
+    <h3>Questions:</h3>
+    <div id="question-wrapper">
+        <label for="question1">Question 1:</label>
+        <input type="text" id="question1" name="questions">
+    <!-- when the user adds questions they will be here -->
+    </div>
+    <button type="button" onclick="addQuestion()">New question</button>
+    <input type="submit" value="Save" />
+</form>
+</body>
+</html>
