@@ -35,6 +35,18 @@ public class SurveyController {
 		return (List<Survey>) surveyRepository.findAll();
 	}
 	
+	@GetMapping("/add-survey")
+	public @ResponseBody List<Survey> addNewSurvey(Model model){
+		model.addAttribute("survey", new Survey());
+		return "addSurvey";
+	}
+	
+	@PostMapping("/save-survey")
+	public String saveSurvey(Survey survey) {
+		surveyRepository.save(survey);
+		return "redirect:../surveys";
+	}
+	
 	// REST api-call which gets all questions and returns them as JSON
 	@GetMapping("/questions")
 	public @ResponseBody List<Question> questionListRest() {
