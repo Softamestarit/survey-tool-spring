@@ -13,7 +13,7 @@ public class Question {
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long questionId;
-	private String name;
+	private String content;
 	
 	@ManyToOne
 	@JoinColumn(name= "surveyId")
@@ -21,16 +21,16 @@ public class Question {
 
 	
 	//Constructors
-	public Question(Long questionId, String name, Survey survey) {
+	public Question(Long questionId, String content, Survey survey) {
 		super();
 		this.questionId = questionId;
-		this.name = name;
+		this.content = content;
 		this.survey = survey;
 	}
 
-	public Question(String name, Survey survey) {
+	public Question(String content, Survey survey) {
 		super();
-		this.name = name;
+		this.content = content;
 		this.survey = survey;
 	}
 
@@ -43,8 +43,8 @@ public class Question {
 		return questionId;
 	}
 
-	public String getName() {
-		return name;
+	public String getContent() {
+		return content;
 	}
 
 	public Survey getSurvey() {
@@ -57,8 +57,8 @@ public class Question {
 		this.questionId = questionId;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	public void setSurvey(Survey survey) {
@@ -67,6 +67,6 @@ public class Question {
 
 	@Override
 	public String toString() {
-		return "Question [questionId=" + questionId + ", name=" + name + "]";
+		return "Question [questionId=" + questionId + ", content=" + content + "]";
 	}
 }
