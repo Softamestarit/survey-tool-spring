@@ -1,5 +1,7 @@
 package fi.haagahelia.surveytool.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,6 +18,7 @@ public class Question {
 	private String content;
 	
 	@ManyToOne
+	@JsonIgnoreProperties("questions")
 	@JoinColumn(name= "surveyId")
 	private Survey survey;
 

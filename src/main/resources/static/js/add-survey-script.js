@@ -1,8 +1,6 @@
 let index = 2
-console.log('hi dad');
 
 function addQuestion() {
-    console.log('hi mom');
     const newQuestion = document.createElement("div");
 
     const newLabel = document.createElement("label");

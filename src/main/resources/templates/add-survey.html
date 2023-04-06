@@ -10,9 +10,9 @@
 <body>
 <h1>Survey Tool</h1>
 <h2>Add a Survey</h2>
-<form th:object="${model}" th:action="@{/submit-survey}" method="post">
+<form th:object="${survey}" th:action="@{/save-survey}" method="post">
     <label for="name">Name:</label>
-    <input type="text" id="name">
+    <input th:field="${survey.name}" type="text" id="name" name="name">
     <h3>Questions:</h3>
     <div id="question-wrapper">
         <label for="question1">Question 1:</label>

@@ -2,6 +2,8 @@ package fi.haagahelia.surveytool.domain;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,6 +20,7 @@ public class Survey {
 	private String name;
 
 	@OneToMany
+	@JsonIgnoreProperties("survey")
 	@JoinColumn(name = "questionId")
 	private List<Question> questions;
 
@@ -72,7 +75,7 @@ public class Survey {
 
 	@Override
 	public String toString() {
-		return "surveyId=" + surveyId + ", name=" + name + ", questions=" + questions + "]";
+		return "surveyId=" + surveyId + ", name=" + name + "]";
 	}
 
 }

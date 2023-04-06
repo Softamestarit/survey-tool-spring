@@ -8,6 +8,7 @@
 </head>
 <body>
 	<div>
+	<h1>Haaga-Helia Survey tool</h1>
 		<form th:object="${question}" th:action="@{save}" action="#" method="post">
 		<label for="question">Question</label>
 		<input type="text" id="question" th:field="*{question}"/>
