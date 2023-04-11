@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import fi.haagahelia.surveytool.domain.Question;
 import fi.haagahelia.surveytool.domain.QuestionRepository;
+import fi.haagahelia.surveytool.domain.Survey;
+import fi.haagahelia.surveytool.domain.SurveyRepository;
 
 @Controller
 public class QuestionController {
@@ -20,6 +23,9 @@ public class QuestionController {
 	
 	@Autowired
 	private QuestionRepository questionRepository;
+	
+	@Autowired
+	private SurveyRepository surveyRepository;
 	
 	//REST method, add new question
 	@PostMapping("/questions")
@@ -37,5 +43,15 @@ public class QuestionController {
 	@GetMapping("/questions/{id}")
 	public @ResponseBody Optional<Question> findQuestion(@PathVariable("id") Long questionId){
 		return questionRepository.findById(questionId);
+	}
+	
+	@GetMapping("/admin/survey/{id}")
+	public String getQuestionsOfSurvey(@PathVariable("id") Long surveyId, Model model) {
+		Optional<Survey> surveyOptional = surveyRepository.findById(surveyId);
+		//TODO: handle survey not found
+		model.addAttribute("survey", surveyOptional);
+		model.addAttribute("questions", surveyOptional.get());
+		model.addAttribute("newQuestion", new Question());
+		return "survey-page";
 	}
 }
