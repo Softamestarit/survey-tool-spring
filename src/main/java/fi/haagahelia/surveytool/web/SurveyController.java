@@ -39,6 +39,13 @@ public class SurveyController {
 		return "redirect:../surveys";
 	}
 	
+	@GetMapping("/admin-page")
+	public String showAdminPage(Model model) {
+		model.addAttribute("surveys", surveyRepository.findAll());
+		return "admin-page";
+	}
+	
+
 	// REST api-call that gets all questions based in surveyId and returns them as JSON
 	@GetMapping("/surveys/{id}")
 	public @ResponseBody Optional<Survey> findSurvey(@PathVariable("id") Long surveyId){
