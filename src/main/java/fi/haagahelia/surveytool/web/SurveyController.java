@@ -56,6 +56,12 @@ public class SurveyController {
 		return "redirect:../surveys";
 	}
 	
+	@GetMapping("/admin-page")
+	public String showAdminPage(Model model) {
+		model.addAttribute("surveys", surveyRepository.findAll());
+		return "admin-page";
+	}
+	
 	/*
 	 * Yritys tehdä jotain hienoa
 	 * 
