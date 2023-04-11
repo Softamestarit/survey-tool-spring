@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Survey tool</title>
+</head>
+<body>
+  <h1>Haaga-Helia Survey Tool</h1>
+  <h2><span th:text="${survey.title}"></span></h2>
+
+  <!-- Form for adding a new question -->
+  <form th:object="${newQuestion}">
+    <label for="questionText">Question:</label>
+    <input id="questionText" type="text" th:field="${newQuestion.text}">
+    <input type="submit" value="Add">
+  </form>
+
+  <!-- Show all questions in this survey -->
+  <div th:each="question : ${questions}">
+    <ol>
+      <li th:text="${question.text}"></li>
+    </ol>
+  </div>
+</body>
+</html>
+
+
