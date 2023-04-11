@@ -21,21 +21,5 @@ public class QuestionController {
 	@Autowired
 	private QuestionRepository questionRepository;
 	
-	//REST method, add new question
-	@PostMapping("/questions")
-	public @ResponseBody Question addQuestionRest(@RequestBody Question question) {
-		return questionRepository.save(question);
-	}
 	
-	// REST api-call which gets all questions and returns them as JSON
-	@GetMapping("/questions")
-	public @ResponseBody List<Question> questionListRest() {
-		return (List<Question>) questionRepository.findAll();
-	}
-	
-	// REST api-call that gets all questions based in surveyId and returns them as JSON
-	@GetMapping("/questions/{id}")
-	public @ResponseBody Optional<Question> findQuestion(@PathVariable("id") Long questionId){
-		return questionRepository.findById(questionId);
-	}
 }
