@@ -15,11 +15,20 @@
     <input th:field="${survey.name}" type="text" id="name" name="name">
     <h3>Questions:</h3>
     <div id="question-wrapper">
-        <label for="question1">Question 1:</label>
-        <input type="text" id="question1" name="questions">
-    <!-- when the user adds questions they will be here -->
+    	<table>
+    		<tr th:each="question : questions">
+    			<td>
+    				<input type="text" th:field="${survey.question.content}" />
+    			</td>
+    		</tr>
+    	</table>
+        <!--<label for="question1">Question 1:</label>
+       	<input th:each="question: ${survey.questions}" th:value="${survey.questions.id}" th:text="${survey.questions.content}"></input>
+        <input th:field="${survey.questions[0].content}" type="text" id="name" name="name">
+       <input type="text" id="question1" name="questions">
+     when the user adds questions they will be here -->
     </div>
-    <button type="button" onclick="addQuestion()">New question</button>
+   <!--   <button type="button" onclick="addQuestion()">New question</button> -->
     <input type="submit" value="Save" />
 </form>
 </body>

@@ -46,6 +46,7 @@ public class SurveyController {
 	@GetMapping("/add-survey")
 	public String addNewSurvey(Model model){
 		model.addAttribute("survey", new Survey());
+		model.addAttribute("questions", questionRepository.findAll());
 		return "add-survey";
 	}
 	

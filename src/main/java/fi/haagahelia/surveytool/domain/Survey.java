@@ -17,7 +17,7 @@ public class Survey {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long surveyId;
-	private String name;
+	private String title;
 
 	@OneToMany
 	@JsonIgnoreProperties("survey")
@@ -25,22 +25,22 @@ public class Survey {
 	private List<Question> questions;
 
 	// Constructors
-	public Survey(Long surveyId, String name, List<Question> questions) {
+	public Survey(Long surveyId, String title, List<Question> questions) {
 		super();
 		this.surveyId = surveyId;
-		this.name = name;
+		this.title = title;
 		this.questions = questions;
 	}
 
-	public Survey(String name, List<Question> questions) {
+	public Survey(String title, List<Question> questions) {
 		super();
-		this.name = name;
+		this.title = title;
 		this.questions = questions;
 	}
 
-	public Survey(String name) {
+	public Survey(String title) {
 		super();
-		this.name = name;
+		this.title = title;
 	}
 
 	public Survey() {
@@ -52,8 +52,8 @@ public class Survey {
 		return surveyId;
 	}
 
-	public String getName() {
-		return name;
+	public String getTitle() {
+		return title;
 	}
 
 	public List<Question> getQuestions() {
@@ -65,8 +65,8 @@ public class Survey {
 		this.surveyId = surveyId;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public void setQuestions(List<Question> questions) {
@@ -75,7 +75,7 @@ public class Survey {
 
 	@Override
 	public String toString() {
-		return "surveyId=" + surveyId + ", name=" + name + "]";
+		return "surveyId=" + surveyId + ", title=" + title + "]";
 	}
 
 }
