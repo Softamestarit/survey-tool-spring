@@ -20,31 +20,31 @@ import fi.haagahelia.surveytool.domain.SurveyRepository;
 @Controller
 public class QuestionController {
 
-	
 	@Autowired
 	private QuestionRepository questionRepository;
-	
+
 	@Autowired
 	private SurveyRepository surveyRepository;
-	
-	//REST method, add new question
+
+	// REST method, add new question
 	@PostMapping("/questions")
 	public @ResponseBody Question addQuestionRest(@RequestBody Question question) {
 		return questionRepository.save(question);
 	}
-	
+
 	// REST api-call which gets all questions and returns them as JSON
 	@GetMapping("/questions")
 	public @ResponseBody List<Question> questionListRest() {
 		return (List<Question>) questionRepository.findAll();
 	}
-	
-	// REST api-call that gets all questions based in surveyId and returns them as JSON
+
+	// REST api-call that gets all questions based in surveyId and returns them as
+	// JSON
 	@GetMapping("/questions/{id}")
-	public @ResponseBody Optional<Question> findQuestion(@PathVariable("id") Long questionId){
+	public @ResponseBody Optional<Question> findQuestion(@PathVariable("id") Long questionId) {
 		return questionRepository.findById(questionId);
 	}
-	
+
 	@GetMapping("/admin/survey/{id}")
 	public String getQuestionsOfSurvey(@PathVariable("id") Long surveyId, Model model) {
 		Optional<Survey> surveyOptional = surveyRepository.findById(surveyId);
@@ -57,11 +57,10 @@ public class QuestionController {
 		model.addAttribute("newQuestion", newQuestion);
 		return "survey-page";
 	}
-	
-	// REST api-call that gets all questions based in surveyId and returns them as JSON
-		@PostMapping("/save-question")
-		public String saveQuestion(Question question) {
-			questionRepository.save(question);
-			return "redirect:/admin/survey/" + question.getSurvey().getSurveyId();
-		}
+
+	@PostMapping("/save-question")
+	public String saveQuestion(Question question) {
+		questionRepository.save(question);
+		return "redirect:/admin/survey/" + question.getSurvey().getSurveyId();
+	}
 }

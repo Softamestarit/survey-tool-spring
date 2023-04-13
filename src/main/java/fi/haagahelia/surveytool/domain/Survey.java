@@ -76,5 +76,4 @@ public class Survey {
 	public String toString() {
 		return "surveyId=" + surveyId + ", title=" + title + "]";
 	}
-
 }
