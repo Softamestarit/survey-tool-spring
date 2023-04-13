@@ -23,7 +23,6 @@ public class SurveyController {
 
 	@Autowired
 	private QuestionRepository questionRepository;
-<<<<<<< HEAD
 
 	// REST method, add new survey
 	@PostMapping("/surveys")
@@ -37,28 +36,6 @@ public class SurveyController {
 		return (List<Survey>) surveyRepository.findAll();
 	}
 
-=======
-	
-	@GetMapping("/add-survey")
-	public String addNewSurvey(Model model){
-		//TODO: tämä uudestaan uuden 11.4 suunnitelman mukaan
-		model.addAttribute("survey", new Survey());
-		model.addAttribute("questions", questionRepository.findAll());
-		return "add-survey";
-	}
-	
->>>>>>> e56e4aaabb51c48ffe364c97266de6419e0d85ec
-	@PostMapping("/save-survey")
-	public String saveSurvey(Survey survey) {
-		// TODO: tämä uudestaan uuden 11.4 suunnitelman mukaan
-		surveyRepository.save(survey);
-		return "redirect:../surveys";
-	}
-<<<<<<< HEAD
-
-	// REST api-call that gets all questions based in surveyId and returns them as
-	// JSON
-=======
 	
 	@GetMapping("/admin-page")
 	public String showAdminPage(Model model) {
@@ -68,7 +45,6 @@ public class SurveyController {
 	
 
 	// REST api-call that gets all questions based in surveyId and returns them as JSON
->>>>>>> e56e4aaabb51c48ffe364c97266de6419e0d85ec
 	@GetMapping("/surveys/{id}")
 	public @ResponseBody Optional<Survey> findSurvey(@PathVariable("id") Long surveyId) {
 		return surveyRepository.findById(surveyId);
