@@ -1,18 +1,15 @@
 package fi.haagahelia.surveytool.web;
 
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import fi.haagahelia.surveytool.domain.QuestionRepository;
 import fi.haagahelia.surveytool.domain.Survey;
 import fi.haagahelia.surveytool.domain.SurveyRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 //@CrossOrigin (origins="http:/localhost:8080")
 @Controller
@@ -20,9 +17,6 @@ public class SurveyController {
 
 	@Autowired
 	private SurveyRepository surveyRepository;
-
-	@Autowired
-	private QuestionRepository questionRepository;
 
 	// REST method, add new survey
 	@PostMapping("/surveys")
