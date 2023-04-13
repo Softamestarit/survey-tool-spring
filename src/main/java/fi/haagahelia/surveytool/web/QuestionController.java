@@ -54,4 +54,11 @@ public class QuestionController {
 		model.addAttribute("newQuestion", new Question());
 		return "survey-page";
 	}
+	
+	// REST api-call that gets all questions based in surveyId and returns them as JSON
+		@GetMapping("/save-question")
+		public String saveQuestion(Question question) {
+			questionRepository.save(question);
+			return "survey-page";
+		}
 }
