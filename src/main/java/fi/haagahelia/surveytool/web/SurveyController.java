@@ -51,6 +51,6 @@ public class SurveyController {
 	@PostMapping("/save-survey")
 	public String saveSurvey(Survey survey) {
 		surveyRepository.save(survey);
-			return "redirect:admin/survey/{id}";
+			return "redirect:admin/survey/"+ survey.getSurveyId();
 	}
 }
