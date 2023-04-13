@@ -1,6 +1,5 @@
 package fi.haagahelia.surveytool.web;
 
-import fi.haagahelia.surveytool.domain.QuestionRepository;
 import fi.haagahelia.surveytool.domain.Survey;
 import fi.haagahelia.surveytool.domain.SurveyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +36,7 @@ public class SurveyController {
 		return surveyRepository.findById(surveyId);
 	}
 	
-	@GetMapping("/admin-page")
+	@GetMapping("/admin")
 	public String showAdminPage(Model model) {
 		model.addAttribute("newSurvey", new Survey());
 		model.addAttribute("surveys", surveyRepository.findAll());
@@ -47,6 +46,6 @@ public class SurveyController {
 	@PostMapping("/save-survey")
 	public String saveSurvey(Survey survey) {
 		surveyRepository.save(survey);
-			return "redirect:admin/survey/{id}";
+		return "redirect:admin/survey/{id}";
 	}
 }
