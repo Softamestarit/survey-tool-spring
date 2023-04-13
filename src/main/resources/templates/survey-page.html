@@ -11,16 +11,16 @@
   <h2><span th:text="${survey.title}"></span></h2>
 
   <!-- Form for adding a new question -->
-  <form th:object="${newQuestion}">
+  <form th:object="${newQuestion}" th:action="@{/save-question/}" method="post" action="#">
     <label for="questionText">Question:</label>
-    <input id="questionText" type="text" th:field="${newQuestion.text}">
+    <input id="questionText" type="text" th:field="${newQuestion.content}">
     <input type="submit" value="Add">
   </form>
 
   <!-- Show all questions in this survey -->
   <div th:each="question : ${questions}">
     <ol>
-      <li th:text="${question.text}"></li>
+      <li th:text="${question.content}"></li>
     </ol>
   </div>
 </body>
