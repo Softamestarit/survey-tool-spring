@@ -49,16 +49,19 @@ public class QuestionController {
 	public String getQuestionsOfSurvey(@PathVariable("id") Long surveyId, Model model) {
 		Optional<Survey> surveyOptional = surveyRepository.findById(surveyId);
 		//TODO: handle survey not found
-		model.addAttribute("survey", surveyOptional.get());
-		model.addAttribute("questions", surveyOptional.get().getQuestions());
-		model.addAttribute("newQuestion", new Question());
+		Survey survey = surveyOptional.get();
+		model.addAttribute("survey", survey); // to show survey title on page
+		model.addAttribute("questions", surveyOptional.get().getQuestions()); // show all questions
+		Question newQuestion = new Question(); // for adding a new question
+		newQuestion.setSurvey(survey); // new question will be added to this survey
+		model.addAttribute("newQuestion", newQuestion);
 		return "survey-page";
 	}
 	
 	// REST api-call that gets all questions based in surveyId and returns them as JSON
-		@GetMapping("/save-question")
+		@PostMapping("/save-question")
 		public String saveQuestion(Question question) {
 			questionRepository.save(question);
-			return "survey-page";
+			return "redirect:/admin/survey/" + question.getSurvey().getSurveyId();
 		}
 }
