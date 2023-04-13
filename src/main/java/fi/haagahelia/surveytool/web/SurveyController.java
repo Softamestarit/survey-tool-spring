@@ -29,7 +29,13 @@ public class SurveyController {
 	public @ResponseBody List<Survey> surveyListRest() {
 		return (List<Survey>) surveyRepository.findAll();
 	}
+	
 
+	// REST api-call that gets all questions based in surveyId and returns them as JSON
+	@GetMapping("/surveys/{id}")
+	public @ResponseBody Optional<Survey> findSurvey(@PathVariable("id") Long surveyId) {
+		return surveyRepository.findById(surveyId);
+	}
 	
 	@GetMapping("/admin-page")
 	public String showAdminPage(Model model) {
@@ -37,10 +43,9 @@ public class SurveyController {
 		return "admin-page";
 	}
 	
-
-	// REST api-call that gets all questions based in surveyId and returns them as JSON
-	@GetMapping("/surveys/{id}")
-	public @ResponseBody Optional<Survey> findSurvey(@PathVariable("id") Long surveyId) {
-		return surveyRepository.findById(surveyId);
+	@PostMapping("/save-survey")
+	public String saveSurvey(Survey survey) {
+		surveyRepository.save(survey);
+			return "redirect:admin/survey/{id}";
 	}
 }
