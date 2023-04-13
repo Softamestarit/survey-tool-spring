@@ -22,14 +22,23 @@ public class SurveyToolApplication {
 
 		return (args) -> {
 			
-			Survey survey1 = new Survey("Kysely1");
+			Survey survey1 = new Survey("Liikuntakysely");
 			
 			surveyRepository.save(survey1);
 			
-			Question question1 = new Question("Kuka on muum?", survey1);
+			Question question1 = new Question("Kuinka monta kertaa liikut viikossa vähintään puoli tuntia?", survey1);
+			Question question2 = new Question("Koetko liikkuvasi tarpeeksi?", survey1);
+			Question question3 = new Question("Koetko lähialueellasi olevan riittävästi liikuntapaikkoja?", survey1);
+			Question question4 = new Question("Tukeeko koulu riittävästi liikkumistasi?", survey1);
+			Question question5 = new Question("Toivoisitko koulun tukevan enemmän liikkumistasi?", survey1);
+			Question question6 = new Question("Avaudu tähän!!", survey1);			
 			
 			questionRepository.save(question1);
-
+			questionRepository.save(question2);
+			questionRepository.save(question3);
+			questionRepository.save(question4);
+			questionRepository.save(question5);
+			questionRepository.save(question6);
 		};
 	}
 }

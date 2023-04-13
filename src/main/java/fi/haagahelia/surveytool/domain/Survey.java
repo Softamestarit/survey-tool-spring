@@ -4,11 +4,11 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -19,9 +19,8 @@ public class Survey {
 	private Long surveyId;
 	private String title;
 
-	@OneToMany
+	@OneToMany (cascade = CascadeType.ALL, mappedBy = "survey")
 	@JsonIgnoreProperties("survey")
-	@JoinColumn(name = "questionId")
 	private List<Question> questions;
 
 	// Constructors
