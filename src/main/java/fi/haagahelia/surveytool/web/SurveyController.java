@@ -5,10 +5,14 @@ import fi.haagahelia.surveytool.domain.SurveyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 //@CrossOrigin (origins="http:/localhost:8080")
 @Controller
@@ -46,6 +50,6 @@ public class SurveyController {
 	@PostMapping("/save-survey")
 	public String saveSurvey(Survey survey) {
 		surveyRepository.save(survey);
-		return "redirect:admin/survey/{id}";
+		return "redirect:admin/survey/"+ survey.getSurveyId();
 	}
 }
