@@ -43,6 +43,7 @@ public class SurveyController {
 	
 	@GetMapping("/admin-page")
 	public String showAdminPage(Model model) {
+		model.addAttribute("newSurvey", new Survey());
 		model.addAttribute("surveys", surveyRepository.findAll());
 		return "admin-page";
 	}
