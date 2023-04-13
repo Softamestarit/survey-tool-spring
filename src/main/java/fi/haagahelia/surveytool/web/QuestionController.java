@@ -52,12 +52,14 @@ public class QuestionController {
 		model.addAttribute("survey", surveyOptional.get());
 		model.addAttribute("questions", surveyOptional.get().getQuestions());
 		model.addAttribute("newQuestion", new Question());
+		
 		return "survey-page";
 	}
 
-	@PostMapping("/save-question")
+	@PostMapping("/save-question/")
 	public String saveQuestion(Question newQuestion) {
 		questionRepository.save(newQuestion);
+		surveyRepository.save(newQuestion.getSurvey());
 		return "redirect:/admin/survey/" + newQuestion.getSurvey().getSurveyId();
 	}
 }

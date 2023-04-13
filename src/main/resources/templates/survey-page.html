@@ -11,9 +11,10 @@
   <h2><span th:text="${survey.title}"></span></h2>
 
   <!-- Form for adding a new question -->
-  <form th:object="${newQuestion}" th:action="@{save-question}" method="post" action="#">
+  <form th:object="${newQuestion}" th:action="@{/save-question/}" method="post" action="#">
     <label for="questionText">Question:</label>
     <input id="questionText" type="text" th:field="${newQuestion.content}">
+    <input type="hidden" th:field="${newQuestion.survey.surveyId}">
     <input type="submit" value="Add">
   </form>
 
