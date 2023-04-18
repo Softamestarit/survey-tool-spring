@@ -5,4 +5,10 @@
 .img-fluid{
 	width: 60%;
 	height: 60%;
+	padding-left: 1%;
 }
+
+.content{
+	padding-left: 1%;	
+}
+
