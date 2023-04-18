@@ -5,10 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8">
   <title>Survey tool</title>
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+	<link rel="stylesheet" href="/css/styles.css"/>
 </head>
 <body>
-  <h1>Haaga-Helia Survey Tool</h1>
-  <h2><span th:text="${survey.title}"></span></h2>
+<nav class="navbar navbar-primary bg-primary">
+<a class="navbar-brand" >
+<img class="img-fluid" src="/images/haaga-helia-logo.png" width="60%" height="60%" alt="Haaga-Helia logo">
+</a>
+</nav>
+  <h1><span th:text="${survey.title}"></span></h1>
+  <h2 class="h2">Add a new question:</h2>
 
   <!-- Form for adding a new question -->
   <form th:object="${newQuestion}" th:action="@{/save-question}" method="post" action="#">

@@ -3,25 +3,40 @@
 <head>
 <title>Admin add survey</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+		<link rel="stylesheet" href="/css/styles.css"/>
 
 </head>
 <body>
-	<h1>HH Survey</h1>
+<nav class="navbar navbar-primary bg-primary">
+<a class="navbar-brand" >
+<img class="img-fluid" src="/images/haaga-helia-logo.png" width="60%" height="60%" alt="Haaga-Helia logo">
+</a>
+</nav>
+	<h1>Your surveys</h1>
+	<h2 class="h2">Add a new survey:</h2>
 	<div>
 		<div>
 			<form th:object="${newSurvey}" th:action="@{save-survey}" action="#"
 				method="post">
-				<label for="title">Title</label>
+				<label for="title">Title:</label>
 				<input type="text" id="title" th:field="*{title}" />
 					<input type="submit" value="Save"></input>
 			</form>
 		</div>
-		<div>
-			<table>
-				<tr>Survey title</tr>
-				<tr th:each="survey: ${surveys}">
-					<td th:text="${survey.title} "></td>
-				</tr>
+		<div class="table-responsive">
+			<table class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th>Survey title</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="survey: ${surveys}">
+						<td> <a th:href="@{/admin/survey/{id} (id=${survey.surveyId})} " th:text="${survey.title} "></a></td>
+					</tr>
+				</tbody>
 			</table>
 		</div>
 	</div>
