@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>REST Home</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+<body>
+	<h1>REST Home Page</h1>
+	
+	<h2>All surveys</h2>
+		<p>Method: GET Endpoint: <a href="/surveys">/surveys</a></p>
+		<p>JSON Example: </p>
+		<pre><code>
+		[
+			{
+				"surveyId": 1,
+				"title": "Liikuntakysely",
+				"questions": [
+						{
+							"questionId": 1,
+							"content": "Kuinka monta kertaa liikut viikossa vähintään puoli tuntia?",
+							"answers": []
+						},
+						{
+							"questionId": 2,
+							"content": "Koetko liikkuvasi tarpeeksi?",
+							"answers": []
+						}
+					]
+			},
+			{
+				"surveyId": 2,
+				"title": "Ulkoilukysely",
+				"questions": [
+						{
+							"questionId": 1,
+							"content": "Kuinka monta tuntia ulkoilet viikossa?",
+							"answers": []
+						}
+					]
+			}
+			
+		]
+		</code></pre>
+		
+		<h2>Survey By Id</h2>
+		<p>Method: GET Endpoint: /surveys{id} <a href="/surveys/1"></a>/surveys/1</p>
+		<p>JSON Example: </p>
+		<pre><code>
+[{
+ "surveyId": 3,
+ "title": "Liikuntakysely",
+ "questions": [
+	{
+	 	"questionId": 1,
+	 	"content": "Kuinka monta kertaa liikut viikossa vähintään puoli tuntia?",
+	 	"answers": []
+	},
+	{
+	 	"questionId": 2,
+	 	"content": "Koetko liikkuvasi tarpeeksi?",
+	 	"answers": []
+	}
+   ]
+}]
+		</code></pre>
+		
+		<h2>New Survey</h2>
+		<p>Method: POST Endpoint: /surveys (Test with PostMan etc.)</p>
+		<p>JSON Example: </p>
+		<pre><code>
+{
+ "title": "Kirjasto kysely",
+ "questions": [
+   	{
+   		"content": "Kuinka usein lainaat kirjoja Haaga-Helian kirjastosta?"
+   	},
+   	{
+   		"content": "Hyödynnätkö kirjaston työskentelytiloja?"
+   	}
+  ]
+}
+
+		
+		</code></pre>
+		
+</body>
+</html>

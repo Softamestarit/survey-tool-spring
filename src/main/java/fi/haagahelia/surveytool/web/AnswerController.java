@@ -16,9 +16,9 @@ public class AnswerController {
 	
 	// REST-method for saving answer
 	
-	@PostMapping(value = "/saveanswer")
+	@PostMapping(value = "/answers")
 	public @ResponseBody Answer saveRestAnswer(@RequestBody Answer answer) {
-		
+
 		return answerRepository.save(answer);
 		
 	}

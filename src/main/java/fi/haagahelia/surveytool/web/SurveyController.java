@@ -21,6 +21,11 @@ public class SurveyController {
 	@Autowired
 	private SurveyRepository surveyRepository;
 
+	@GetMapping("/resthome")
+	public String resthomepage(){
+		return "resthome";
+	}
+	
 	// REST method, add new survey
 	@PostMapping("/surveys")
 	public @ResponseBody Survey addSurveyRest(@RequestBody Survey survey) {
