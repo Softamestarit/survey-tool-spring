@@ -26,13 +26,49 @@ public class Question {
 	@JsonIgnoreProperties("questions")
 	@JoinColumn(name = "surveyId")
 	private Survey survey;
+	
+	@ManyToOne
+	@JsonIgnoreProperties("questions")
+	@JoinColumn(name = "typeId")
+	private QuestionType type;
 
 	@OneToMany
 	@JsonIgnoreProperties("question")
 	@JoinColumn(name = "answerId")
 	private List<Answer> answers;
+	
+	@OneToMany
+	@JsonIgnoreProperties("question")
+	@JoinColumn(name = "optionId")
+	private List<Option> options;
 
 	// Constructors
+	
+	public Question(Long questionId, String content, Survey survey, QuestionType type, List<Answer> answers, List<Option> options) {
+		super();
+		this.questionId = questionId;
+		this.content = content;
+		this.survey = survey;
+		this.type = type;
+		this.answers = answers;
+		this.options = options;
+	}
+	
+	public Question(String content, Survey survey, QuestionType type, List<Answer> answers, List<Option> options) {
+		super();
+		this.content = content;
+		this.survey = survey;
+		this.type = type;
+		this.answers = answers;
+		this.options = options;
+	}
+	
+	public Question(String content, Survey survey, QuestionType type) {
+		super();
+		this.content = content;
+		this.survey = survey;
+		this.type = type;
+	}
 
 	public Question(Long questionId, String content, Survey survey) {
 		super();
@@ -59,6 +95,7 @@ public class Question {
 	}
 
 	// Getters
+	
 	public Long getQuestionId() {
 		return questionId;
 	}
@@ -71,8 +108,16 @@ public class Question {
 		return survey;
 	}
 
+	public QuestionType getType() {
+		return type;
+	}
+
 	public List<Answer> getAnswers() {
 		return answers;
+	}
+
+	public List<Option> getOptions() {
+		return options;
 	}
 
 	// Setters
@@ -89,8 +134,16 @@ public class Question {
 		this.survey = survey;
 	}
 
+	public void setType(QuestionType type) {
+		this.type = type;
+	}
+
 	public void setAnswers(List<Answer> answers) {
 		this.answers = answers;
+	}
+
+	public void setOptions(List<Option> options) {
+		this.options = options;
 	}
 
 	@Override
