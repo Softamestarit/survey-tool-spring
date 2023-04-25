@@ -22,7 +22,7 @@ public class SurveyToolApplication {
 
 		return (args) -> {
 			
-			Survey survey1 = new Survey("Liikuntakysely");
+			Survey survey1 = new Survey("Liikuntakysely", "Kysely Haaga-Helian opiskelijoiden liikuntatottumuksista.");
 			
 			surveyRepository.save(survey1);
 			

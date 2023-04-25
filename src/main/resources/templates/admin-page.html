@@ -22,8 +22,8 @@
 			<form th:object="${newSurvey}" th:action="@{save-survey}" action="#"
 				method="post">
 				<label for="title">Title:</label>
-				<input type="text" id="title" th:field="*{title}" />
-					<input type="submit" value="Save"></input>
+				<textarea id="title" th:field="*{title}" th:required="required"></textarea>
+				<input type="submit" value="Save"></input>
 			</form>
 		</div>
 		<div class="table-responsive">
