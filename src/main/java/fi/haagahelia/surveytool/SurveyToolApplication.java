@@ -32,9 +32,13 @@ public class SurveyToolApplication {
 			
 			surveyRepository.save(survey1);
 			
-			QuestionType type1 = new QuestionType("Radio");
+			QuestionType type1 = new QuestionType("Text");
+			QuestionType type2 = new QuestionType("Radio");
+			QuestionType type3 = new QuestionType("Checkbox");
 			
 			questionTypeRepository.save(type1);
+			questionTypeRepository.save(type2);
+			questionTypeRepository.save(type3);
 			
 			Question question1 = new Question("Kuinka monta kertaa liikut viikossa vähintään puoli tuntia?", survey1, type1);
 			Question question2 = new Question("Koetko liikkuvasi tarpeeksi?", survey1, type1);
@@ -50,10 +54,12 @@ public class SurveyToolApplication {
 			questionRepository.save(question5);
 			questionRepository.save(question6);
 			
-			Option option1 = new Option("AAA");
+			Option option1 = new Option("Kyllä");
+			Option option2 = new Option("Ei");
 			
 			optionRepository.save(option1);
-			
+			optionRepository.save(option2);
+
 			//testi dataa vastausten näyttämiseen 
 			
 			Survey survey2 = new Survey("Alkoholikysely", "Kysely Haaga-Helian opiskelijoiden alkoholitottumuksista.");
@@ -81,7 +87,6 @@ public class SurveyToolApplication {
 			answerRepository.save(answer221);
 			answerRepository.save(answer32);
 			answerRepository.save(answer321);
-		
 		};
 	}
 }
