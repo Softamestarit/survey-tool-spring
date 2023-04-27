@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import fi.haagahelia.surveytool.domain.Answer;
 import fi.haagahelia.surveytool.domain.AnswerRepository;
 import fi.haagahelia.surveytool.domain.Option;
 import fi.haagahelia.surveytool.domain.OptionRepository;
