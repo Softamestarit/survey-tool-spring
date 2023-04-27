@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Survey tool</title>
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" href="/css/styles.css" />
+<script src="/js/editDescription.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-primary bg-primary">
+		<a class="navbar-brand"> <img class="img-fluid"
+			src="/images/haaga-helia-logo.png" width="60%" height="60%"
+			alt="Haaga-Helia logo">
+		</a>
+		<ul class="navbar-nav mr-auto">
+		<li class="nav-item active"><a class="navbar-brand" id="navbar-back" href="/admin">All your surveys</a></li>
+		</ul>
+	</nav>
+	<div>
+		<form th:object="${newSurvey}" th:action="@{save-survey}" action="#"
+				method="post">
+				<label for="title">Title:</label>
+				<textarea id="title" th:field="*{title}" th:required="required"></textarea>
+				<label for="description">Description:</label>
+				<textarea id="description" th:field="*{description}"></textarea>
+				<label for="startTime">Start date and time:</label>
+				<input type="datetime-local" th:field="*{startTime}" id="startTime" >
+				<label for="endTime">End date and time:</label>
+				<input type="datetime-local" th:field="*{endTime}" id="endTime" >
+				<input type="submit" value="Save"></input>
+			</form>
+	</div>
+	</body>
+	</html>
+	

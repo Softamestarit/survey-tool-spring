@@ -1,11 +1,12 @@
 package fi.haagahelia.surveytool;
 
+import java.time.LocalDateTime;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import fi.haagahelia.surveytool.domain.Answer;
 import fi.haagahelia.surveytool.domain.AnswerRepository;
 import fi.haagahelia.surveytool.domain.Option;
 import fi.haagahelia.surveytool.domain.OptionRepository;
@@ -28,7 +29,11 @@ public class SurveyToolApplication {
 
 		return (args) -> {
 			
-			Survey survey1 = new Survey("Liikuntakysely", "Kysely Haaga-Helian opiskelijoiden liikuntatottumuksista.");
+			LocalDateTime sDate = LocalDateTime.of(2023, 5, 26, 22, 11);
+			LocalDateTime eDate = LocalDateTime.of(2023, 3, 12, 22, 11);
+			
+						
+			Survey survey1 = new Survey("Liikuntakysely", "Kysely Haaga-Helian opiskelijoiden liikuntatottumuksista.", sDate, eDate);
 			
 			surveyRepository.save(survey1);
 			
