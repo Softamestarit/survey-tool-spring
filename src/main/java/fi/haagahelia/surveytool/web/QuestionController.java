@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import fi.haagahelia.surveytool.domain.Question;
 import fi.haagahelia.surveytool.domain.QuestionRepository;
+import fi.haagahelia.surveytool.domain.QuestionTypeRepository;
 import fi.haagahelia.surveytool.domain.Survey;
 import fi.haagahelia.surveytool.domain.SurveyRepository;
 
@@ -22,6 +23,9 @@ public class QuestionController {
 
 	@Autowired
 	private QuestionRepository questionRepository;
+	
+	@Autowired
+	private QuestionTypeRepository questionTypeRepository;
 
 	@Autowired
 	private SurveyRepository surveyRepository;
@@ -60,6 +64,7 @@ public class QuestionController {
 
 	@PostMapping("/save-question")
 	public String saveQuestion(Question question) {
+		questionTypeRepository.save(question.getType());
 		questionRepository.save(question);
 		return "redirect:/admin/survey/" + question.getSurvey().getSurveyId();
 	}

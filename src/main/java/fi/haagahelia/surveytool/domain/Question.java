@@ -21,6 +21,8 @@ public class Question {
 	private Long questionId;
 	@Column(nullable=false)
 	private String content;
+	
+	private Integer selectedCount;
 
 	@ManyToOne
 	@JsonIgnoreProperties("questions")
@@ -54,13 +56,14 @@ public class Question {
 		this.options = options;
 	}
 	
-	public Question(String content, Survey survey, QuestionType type, List<Answer> answers, List<Option> options) {
+	public Question(String content, Survey survey, QuestionType type, List<Answer> answers, List<Option> options, Integer selectedCount) {
 		super();
 		this.content = content;
 		this.survey = survey;
 		this.type = type;
 		this.answers = answers;
 		this.options = options;
+		this.selectedCount = selectedCount;
 	}
 	
 	public Question(String content, Survey survey, QuestionType type) {
@@ -119,8 +122,16 @@ public class Question {
 	public List<Option> getOptions() {
 		return options;
 	}
+	
+	public Integer getSelectedCount() {
+		return selectedCount;
+	}
 
 	// Setters
+
+	public void setSelectedCount(Integer selectedCount) {
+		this.selectedCount = selectedCount;
+	}
 
 	public void setQuestionId(Long questionId) {
 		this.questionId = questionId;
