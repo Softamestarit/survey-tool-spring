@@ -47,7 +47,6 @@ public class SurveyController {
 	
 	@GetMapping("/admin")
 	public String showAdminPage(Model model) {
-		model.addAttribute("newSurvey", new Survey());
 		model.addAttribute("surveys", surveyRepository.findAll());
 		return "admin-page";
 	}
@@ -62,6 +61,12 @@ public class SurveyController {
 	public String saveSurveyDescription(Survey survey) {
 		surveyRepository.save(survey);
 		return "redirect:admin/survey/"+ survey.getSurveyId();
+	}
+	
+	@GetMapping("/add-new-survey")
+	public String addNewSurvey(Model model) {
+		model.addAttribute("newSurvey", new Survey());
+		return "new-survey";
 	}
 	
 }

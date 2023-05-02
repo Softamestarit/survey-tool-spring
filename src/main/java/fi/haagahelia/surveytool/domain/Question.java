@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -34,14 +35,13 @@ public class Question {
 	@JoinColumn(name = "typeId")
 	private QuestionType type;
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
 	@JsonIgnoreProperties("question")
-	@JoinColumn(name = "answerId")
+	//@JoinColumn(name = "answerId")
 	private List<Answer> answers;
 	
 	@OneToMany
 	@JsonIgnoreProperties("question")
-	@JoinColumn(name = "optionId")
 	private List<Option> options;
 
 	// Constructors
@@ -64,6 +64,14 @@ public class Question {
 		this.answers = answers;
 		this.options = options;
 		this.selectedCount = selectedCount;
+	}
+	
+	public Question(String content, Survey survey, QuestionType type, List<Answer> answers) {
+		super();
+		this.content = content;
+		this.survey = survey;
+		this.type = type;
+		this.answers = answers;
 	}
 	
 	public Question(String content, Survey survey, QuestionType type) {

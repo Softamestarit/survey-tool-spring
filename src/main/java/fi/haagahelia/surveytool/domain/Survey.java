@@ -1,6 +1,9 @@
 package fi.haagahelia.surveytool.domain;
 
+import java.time.LocalDateTime;
 import java.util.List;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -23,27 +26,49 @@ public class Survey {
 	private String title;
 	
 	private String description;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH-mm")
+	private LocalDateTime startTime;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH-mm")
+	private LocalDateTime endTime;
+
 
 	@OneToMany (cascade = CascadeType.ALL, mappedBy = "survey")
 	@JsonIgnoreProperties("survey")
 	private List<Question> questions;
 
 	// Constructors
-	public Survey(Long surveyId, String title, String description, List<Question> questions) {
+	
+	public Survey(Long surveyId, String title, String description, LocalDateTime startTime, LocalDateTime endTime,
+			List<Question> questions) {
 		super();
 		this.surveyId = surveyId;
 		this.title = title;
 		this.description = description;
+		this.startTime = startTime;
+		this.endTime = endTime;
 		this.questions = questions;
 	}
 
-	public Survey(String title, String description, List<Question> questions) {
+	public Survey(String title, String description, LocalDateTime startTime, LocalDateTime endTime,
+			List<Question> questions) {
 		super();
 		this.title = title;
 		this.description = description;
+		this.startTime = startTime;
+		this.endTime = endTime;
 		this.questions = questions;
 	}
 
+	public Survey(String title, String description, LocalDateTime startTime, LocalDateTime endTime) {
+		super();
+		this.title = title;
+		this.description = description;
+		this.startTime = startTime;
+		this.endTime = endTime;
+	}
+	
 	public Survey(String title, String description) {
 		super();
 		this.title = title;
@@ -67,6 +92,13 @@ public class Survey {
 		return description;
 	}
 
+	public LocalDateTime getStartTime() {
+		return startTime;
+	}
+	
+	public LocalDateTime getEndTime() {
+		return endTime;
+	}
 
 	public List<Question> getQuestions() {
 		return questions;
@@ -85,12 +117,23 @@ public class Survey {
 		this.description = description;
 	}
 
+	public void setStartTime(LocalDateTime startTime) {
+		this.startTime = startTime;
+	}
+	
+	public void setEndTime(LocalDateTime endTime) {
+		this.endTime = endTime;
+	}
+	
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
 	}
 
 	@Override
 	public String toString() {
-		return "surveyId=" + surveyId + ", title=" + title + "]";
+		return "surveyId=" + surveyId + ", title=" + title + ", description=" + description + ", startTime=" + startTime
+				+ ", endTime=" + endTime + "]";
 	}
+
+	
 }
