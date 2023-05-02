@@ -18,7 +18,8 @@
 			alt="Haaga-Helia logo">
 		</a>
 		<ul class="navbar-nav mr-auto">
-		<li class="nav-item active"><a class="navbar-brand" id="navbar-back" href="/admin">All your surveys</a></li>
+			<li class="nav-item active"><a class="navbar-brand"
+				id="navbar-back" href="/admin">All your surveys</a></li>
 		</ul>
 	</nav>
 	<div class="content">
@@ -29,8 +30,7 @@
 			<span th:text="${survey.description}"></span>
 		</h2>
 		<div id=edit-description-wrapper>
-			<button id="edit-description-button" type="button">Edit
-				</button>
+			<button id="edit-description-button" type="button">Edit</button>
 			<form action="#" id="description-form" method="post"
 				th:object="${survey}" th:action="@{/save-description}"
 				style="display: none;">
@@ -38,19 +38,35 @@
 					th:field="${survey.surveyId}"> <label for="title"></label>
 				<input type="text" th:field="${survey.title}" id="title"> <label
 					for="description"></label> <input type="text"
-					th:field="${survey.description}" id="description"> <input
-					type="submit" value="Save">
+					th:field="${survey.description}" id="description">
+				<label for="startTime"></label>
+					<input type="datetime-local" th:field="${survey.startTime}" id="startTime" value="2018-06-12T19:30:00">
+				<label for="endTime"></label>
+					<input type="datetime-local" th:field="${survey.endTime}" id="endTime" value="2018-10-10T19:30.00">
+					<input type="submit" value="Save">
 			</form>
 		</div>
+
 		<h2 class="h2">Add a new question:</h2>
 
 		<!-- Form for adding a new question -->
 		<form th:object="${newQuestion}" th:action="@{/save-question}"
 			method="post" action="#">
-			<label for="questionText"></label>
-			<textarea id="questionText" th:field="${newQuestion.content}"
-				th:required="required"></textarea>
+			<label for="questionType">Question type:</label>
+			<select th:field="${newQuestion.type.type}" id="questionType" name="questionType">
+				<option value="text">Text</option>
+				<option value="radio">Radio Button</option>
+				<option value="checkbox">Checkbox</option>
+			</select>
+			<div id="questionInput">
+				<label for="questionText">Question Text:</label> <textarea
+					id="questionText" name="questionText"
+					th:field="${newQuestion.content}" th:required="required"></textarea>
+			</div>
 			<input type="hidden" th:field="${newQuestion.survey.surveyId}">
+			<label for="selectedCount">Number of Selected Options:</label> <input
+				type="text" id="selectedCount" name="selectedCount"
+				th:field="${newQuestion.selectedCount}" size="1" maxlength="1">
 			<input type="submit" value="Add">
 		</form>
 

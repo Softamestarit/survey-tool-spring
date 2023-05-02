@@ -19,12 +19,7 @@
 	<h2 class="h2">Add a new survey:</h2>
 	<div>
 		<div>
-			<form th:object="${newSurvey}" th:action="@{save-survey}" action="#"
-				method="post">
-				<label for="title">Title:</label>
-				<textarea id="title" th:field="*{title}" th:required="required"></textarea>
-				<input type="submit" value="Save"></input>
-			</form>
+			<a href="/add-new-survey" role="button">Add new survey</a>
 		</div>
 		<div class="table-responsive">
 			<table class="table">

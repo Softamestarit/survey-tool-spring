@@ -4,7 +4,15 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Question {
@@ -14,6 +22,8 @@ public class Question {
 	private Long questionId;
 	@Column(nullable=false)
 	private String content;
+	
+	private Integer selectedCount;
 
 	@ManyToOne
 	@JsonIgnoreProperties("questions")
@@ -25,14 +35,13 @@ public class Question {
 	@JoinColumn(name = "typeId")
 	private QuestionType type;
 
-	@OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
 	@JsonIgnoreProperties("question")
-	// @JoinColumn(name = "answerId")
+	//@JoinColumn(name = "answerId")
 	private List<Answer> answers;
 	
 	@OneToMany
 	@JsonIgnoreProperties("question")
-	@JoinColumn(name = "optionId")
 	private List<Option> options;
 
 	// Constructors
@@ -47,13 +56,22 @@ public class Question {
 		this.options = options;
 	}
 	
-	public Question(String content, Survey survey, QuestionType type, List<Answer> answers, List<Option> options) {
+	public Question(String content, Survey survey, QuestionType type, List<Answer> answers, List<Option> options, Integer selectedCount) {
 		super();
 		this.content = content;
 		this.survey = survey;
 		this.type = type;
 		this.answers = answers;
 		this.options = options;
+		this.selectedCount = selectedCount;
+	}
+	
+	public Question(String content, Survey survey, QuestionType type, List<Answer> answers) {
+		super();
+		this.content = content;
+		this.survey = survey;
+		this.type = type;
+		this.answers = answers;
 	}
 	
 	public Question(String content, Survey survey, QuestionType type) {
@@ -112,8 +130,16 @@ public class Question {
 	public List<Option> getOptions() {
 		return options;
 	}
+	
+	public Integer getSelectedCount() {
+		return selectedCount;
+	}
 
 	// Setters
+
+	public void setSelectedCount(Integer selectedCount) {
+		this.selectedCount = selectedCount;
+	}
 
 	public void setQuestionId(Long questionId) {
 		this.questionId = questionId;
