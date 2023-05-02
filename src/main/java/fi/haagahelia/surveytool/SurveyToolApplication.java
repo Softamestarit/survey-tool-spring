@@ -31,7 +31,7 @@ public class SurveyToolApplication {
 		return (args) -> {
 			
 			LocalDateTime sDate = LocalDateTime.of(2023, 5, 26, 22, 11);
-			LocalDateTime eDate = LocalDateTime.of(2023, 3, 12, 22, 11);
+			LocalDateTime eDate = LocalDateTime.of(2023, 7, 30, 22, 11);
 			
 						
 			Survey survey1 = new Survey("Liikuntakysely", "Kysely Haaga-Helian opiskelijoiden liikuntatottumuksista.", sDate, eDate);
@@ -68,7 +68,7 @@ public class SurveyToolApplication {
 
 			//testi dataa vastausten näyttämiseen 
 			
-			Survey survey2 = new Survey("Alkoholikysely", "Kysely Haaga-Helian opiskelijoiden alkoholitottumuksista.");
+			Survey survey2 = new Survey("Alkoholikysely", "Kysely Haaga-Helian opiskelijoiden alkoholitottumuksista.", sDate, eDate);
 			surveyRepository.save(survey2);
 			
 			Question question12 = new Question("Kuinka usein juot alkoholia viikossa?", survey2, type1);
