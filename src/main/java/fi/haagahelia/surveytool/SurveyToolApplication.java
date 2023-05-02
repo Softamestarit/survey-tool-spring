@@ -38,9 +38,9 @@ public class SurveyToolApplication {
 			
 			surveyRepository.save(survey1);
 			
-			QuestionType type1 = new QuestionType("Text");
-			QuestionType type2 = new QuestionType("Radio");
-			QuestionType type3 = new QuestionType("Checkbox");
+			QuestionType type1 = new QuestionType("text");
+			QuestionType type2 = new QuestionType("radio");
+			QuestionType type3 = new QuestionType("checkbox");
 			
 			questionTypeRepository.save(type1);
 			questionTypeRepository.save(type2);
