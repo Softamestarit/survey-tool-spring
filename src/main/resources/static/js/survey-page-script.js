@@ -12,4 +12,11 @@ window.addEventListener('load', function (){
 		editForm.style.display = "block";
 	});
 	
+copyresponselinkbutton.addEventListener("click", () => {
+		const copyLink = document.getElementById("responselink");
+		
+		navigator.clipboard.writeText(copyLink.textContent);
+		
+		alert("Copied the link: " + copyLink.textContent);
+	});
 });
