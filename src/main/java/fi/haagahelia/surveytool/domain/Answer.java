@@ -2,12 +2,7 @@ package fi.haagahelia.surveytool.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 @Entity
 public class Answer {
@@ -17,7 +12,7 @@ public class Answer {
 	private Long answerId;
 	private String text;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnoreProperties("answers")
 	@JoinColumn(name="questionId")
 	private Question question;

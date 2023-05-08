@@ -14,6 +14,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.AssertTrue;
 
 @Entity
 public class Survey {
@@ -27,10 +28,12 @@ public class Survey {
 	
 	private String description;
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH-mm")
+	@Column(nullable=false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private LocalDateTime startTime;
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH-mm")
+	@Column(nullable=false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private LocalDateTime endTime;
 
 
@@ -38,6 +41,11 @@ public class Survey {
 	@JsonIgnoreProperties("survey")
 	private List<Question> questions;
 
+	@AssertTrue
+	private boolean isEndDateLaterThanStart() {
+		return (endTime.isAfter(startTime));
+	}
+	
 	// Constructors
 	
 	public Survey(Long surveyId, String title, String description, LocalDateTime startTime, LocalDateTime endTime,

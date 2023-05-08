@@ -17,9 +17,6 @@
 			src="/images/haaga-helia-logo.png" width="60%" height="60%"
 			alt="Haaga-Helia logo">
 		</a>
-		<ul class="navbar-nav mr-auto">
-		<li class="nav-item active"><a class="navbar-brand" id="navbar-back" href="/admin">All your surveys</a></li>
-		</ul>
 	</nav>
 	<div>
 		<form th:object="${newSurvey}" th:action="@{save-survey}" action="#"
@@ -29,9 +26,9 @@
 				<label for="description">Description:</label>
 				<textarea id="description" th:field="*{description}"></textarea>
 				<label for="startTime">Start date and time:</label>
-				<input type="datetime-local" th:field="*{startTime}" id="startTime" >
+				<input type="datetime-local" th:field="*{startTime}" id="startTime" th:required="required">
 				<label for="endTime">End date and time:</label>
-				<input type="datetime-local" th:field="*{endTime}" id="endTime" >
+				<input type="datetime-local" th:field="*{endTime}" id="endTime" th:required="required">
 				<input type="submit" value="Save"></input>
 			</form>
 	</div>

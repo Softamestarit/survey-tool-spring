@@ -9,7 +9,7 @@
 <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
 	th:href="@{/css/bootstrap.min.css}" />
 <link rel="stylesheet" href="/css/styles.css" />
-<script src="/js/editDescription.js"></script>
+<script src="/js/survey-page-script.js"></script>
 </head>
 <body>
 	<nav class="navbar navbar-primary bg-primary">
@@ -29,6 +29,12 @@
 		<h2 class="h2" id="survey-description">
 			<span th:text="${survey.description}"></span>
 		</h2>
+		<div>
+		<a th:href="@{https://survey-tool-react-production.up.railway.app/survey/{id}/report(id=${survey.surveyId})}"><button>View Report</button></a></div>
+		<div><a id="responselink"
+		 th:href="@{https://survey-tool-react-production.up.railway.app/survey/{id}/response(id=${survey.surveyId})}"
+		 th:text="@{https://survey-tool-react-production.up.railway.app/survey/{id}/response(id=${survey.surveyId})}"></a>
+		 <button id="copyresponselinkbutton">Copy link</button></div>
 		<div id=edit-description-wrapper>
 			<button id="edit-description-button" type="button">Edit</button>
 			<form action="#" id="description-form" method="post"
@@ -38,13 +44,12 @@
 					th:field="${survey.surveyId}"> <label for="title"></label>
 				<input type="text" th:field="${survey.title}" id="title"> <label
 					for="description"></label> <input type="text"
-					th:field="${survey.description}" id="description"> <label
-					for="startTime"></label> <input type="datetime-local"
-					th:field="${survey.startTime}" id="startTime"
-					value="2018-06-12T19:30:00"> <label for="endTime"></label>
-				<input type="datetime-local" th:field="${survey.endTime}"
-					id="endTime" value="2018-10-10T19:30.00"> <input
-					type="submit" value="Save">
+					th:field="${survey.description}" id="description">
+				<label for="startTime"></label>
+					<input type="datetime-local" th:field="${survey.startTime}" id="startTime">
+				<label for="endTime"></label>
+					<input type="datetime-local" th:field="${survey.endTime}" id="endTime" >
+					<input type="submit" value="Save">
 			</form>
 		</div>
 
