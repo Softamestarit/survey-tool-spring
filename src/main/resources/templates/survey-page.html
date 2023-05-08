@@ -38,12 +38,13 @@
 					th:field="${survey.surveyId}"> <label for="title"></label>
 				<input type="text" th:field="${survey.title}" id="title"> <label
 					for="description"></label> <input type="text"
-					th:field="${survey.description}" id="description">
-				<label for="startTime"></label>
-					<input type="datetime-local" th:field="${survey.startTime}" id="startTime" value="2018-06-12T19:30:00">
-				<label for="endTime"></label>
-					<input type="datetime-local" th:field="${survey.endTime}" id="endTime" value="2018-10-10T19:30.00">
-					<input type="submit" value="Save">
+					th:field="${survey.description}" id="description"> <label
+					for="startTime"></label> <input type="datetime-local"
+					th:field="${survey.startTime}" id="startTime"
+					value="2018-06-12T19:30:00"> <label for="endTime"></label>
+				<input type="datetime-local" th:field="${survey.endTime}"
+					id="endTime" value="2018-10-10T19:30.00"> <input
+					type="submit" value="Save">
 			</form>
 		</div>
 
@@ -51,22 +52,25 @@
 
 		<!-- Form for adding a new question -->
 		<form th:object="${newQuestion}" th:action="@{/save-question}"
-			method="post" action="#">
-			<label for="questionType">Question type:</label>
-			<select th:field="${newQuestion.type.type}" id="questionType" name="questionType">
+			method="post" action="#" id="questionForm">
+			<label for="questionType">Question type:</label> <select
+				th:field="${newQuestion.type.type}" id="questionType"
+				name="questionType" onchange="setFormAction()">
 				<option value="text">Text</option>
 				<option value="radio">Radio Button</option>
 				<option value="checkbox">Checkbox</option>
 			</select>
 			<div id="questionInput">
-				<label for="questionText">Question Text:</label> <textarea
-					id="questionText" name="questionText"
+				<label for="questionText">Question Text:</label>
+				<textarea id="questionText" name="questionText"
 					th:field="${newQuestion.content}" th:required="required"></textarea>
 			</div>
 			<input type="hidden" th:field="${newQuestion.survey.surveyId}">
-			<label for="selectedCount">Number of Selected Options:</label> <input
+			
+			<!--  <label for="selectedCount">Number of Selected Options:</label> <input
 				type="text" id="selectedCount" name="selectedCount"
-				th:field="${newQuestion.selectedCount}" size="1" maxlength="1">
+				th:field="${newQuestion.selectedCount}" size="1" maxlength="1">-->
+			
 			<input type="submit" value="Add">
 		</form>
 

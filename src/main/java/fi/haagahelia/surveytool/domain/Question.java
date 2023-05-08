@@ -23,7 +23,7 @@ public class Question {
 	@Column(nullable=false)
 	private String content;
 	
-	private Integer selectedCount;
+	// private Integer selectedCount;
 
 	@ManyToOne
 	@JsonIgnoreProperties("questions")
@@ -40,7 +40,7 @@ public class Question {
 	//@JoinColumn(name = "answerId")
 	private List<Answer> answers;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
 	@JsonIgnoreProperties("question")
 	private List<Option> options;
 
@@ -56,14 +56,14 @@ public class Question {
 		this.options = options;
 	}
 	
-	public Question(String content, Survey survey, QuestionType type, List<Answer> answers, List<Option> options, Integer selectedCount) {
+	public Question(String content, Survey survey, QuestionType type, List<Answer> answers, List<Option> options/*, Integer selectedCount*/) {
 		super();
 		this.content = content;
 		this.survey = survey;
 		this.type = type;
 		this.answers = answers;
 		this.options = options;
-		this.selectedCount = selectedCount;
+		// this.selectedCount = selectedCount;
 	}
 	
 	public Question(String content, Survey survey, QuestionType type, List<Answer> answers) {
@@ -131,15 +131,15 @@ public class Question {
 		return options;
 	}
 	
-	public Integer getSelectedCount() {
+	/*public Integer getSelectedCount() {
 		return selectedCount;
-	}
+	}*/
 
 	// Setters
 
-	public void setSelectedCount(Integer selectedCount) {
+	/*public void setSelectedCount(Integer selectedCount) {
 		this.selectedCount = selectedCount;
-	}
+	}*/
 
 	public void setQuestionId(Long questionId) {
 		this.questionId = questionId;
