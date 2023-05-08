@@ -72,9 +72,11 @@ public class QuestionController {
 	public String saveQuestion(Question question, Model model) {
 		questionTypeRepository.save(question.getType());
 		questionRepository.save(question);
+		// changes return value to edit-options if the user chose type checkbox/radio
 		if (question.getType().getType().contains("radio")  || question.getType().getType().contains("checkbox")) {
 			Option option = new Option(question);
 			model.addAttribute("option", option);
+			// gets questionId to connect question to option
 			model.addAttribute("question", questionRepository.findById(option.getQuestion().getQuestionId()));
 			return "edit-options";
 		}
@@ -84,9 +86,11 @@ public class QuestionController {
 	@PostMapping("/add-options")
 	public String saveOptions(Option option, Model model) {
 		optionRepository.save(option);
+		
+		// reinitialises option and gets question data to display already added options
 		model.addAttribute("question", questionRepository.findById(option.getQuestion().getQuestionId()));
 		model.addAttribute("options", option.getQuestion().getOptions());
-		System.out.println(model);
+		
 		return "edit-options";
 	}
 	
