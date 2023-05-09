@@ -30,11 +30,11 @@ public class SurveyToolApplication {
 
 		return (args) -> {
 			
-			LocalDateTime sDate = LocalDateTime.of(2023, 5, 26, 22, 11);
-			LocalDateTime eDate = LocalDateTime.of(2023, 7, 30, 22, 11);
+			LocalDateTime sDate1 = LocalDateTime.of(2023, 3, 26, 22, 11);
+			LocalDateTime eDate1 = LocalDateTime.of(2023, 7, 30, 22, 11);
 			
 						
-			Survey survey1 = new Survey("Liikuntakysely", "Kysely Haaga-Helian opiskelijoiden liikuntatottumuksista.", sDate, eDate);
+			Survey survey1 = new Survey("Liikuntakysely", "Kysely Haaga-Helian opiskelijoiden liikuntatottumuksista.", sDate1, eDate1);
 			
 			surveyRepository.save(survey1);
 			
@@ -45,20 +45,18 @@ public class SurveyToolApplication {
 			questionTypeRepository.save(type1);
 			questionTypeRepository.save(type2);
 			questionTypeRepository.save(type3);
-			
-			Question question1 = new Question("Kuinka monta kertaa liikut viikossa vähintään puoli tuntia?", survey1, type1);
+
 			Question question2 = new Question("Koetko liikkuvasi tarpeeksi?", survey1, type1);
 			Question question3 = new Question("Koetko lähialueellasi olevan riittävästi liikuntapaikkoja?", survey1, type1);
 			Question question4 = new Question("Tukeeko koulu riittävästi liikkumistasi?", survey1, type1);
-			Question question5 = new Question("Toivoisitko koulun tukevan enemmän liikkumistasi?", survey1, type1);
-			Question question6 = new Question("Avaudu tähän!!", survey1, type1);			
-			
+			Question question5 = new Question("Miten koulu voisi tukea liikkumistasi paremmin?", survey1, type1);
+			Question question1 = new Question("Mikä innostaisi sinua liikkumaan enemmän?", survey1, type1);
+
 			questionRepository.save(question1);
 			questionRepository.save(question2);
 			questionRepository.save(question3);
 			questionRepository.save(question4);
 			questionRepository.save(question5);
-			questionRepository.save(question6);
 			
 			Option option1 = new Option("Kyllä");
 			Option option2 = new Option("Ei");
@@ -67,8 +65,10 @@ public class SurveyToolApplication {
 			optionRepository.save(option2);
 
 			//testi dataa vastausten näyttämiseen 
-			
-			Survey survey2 = new Survey("Alkoholikysely", "Kysely Haaga-Helian opiskelijoiden alkoholitottumuksista.", sDate, eDate);
+			LocalDateTime sDate2 = LocalDateTime.of(2023, 5, 26, 22, 11);
+			LocalDateTime eDate2 = LocalDateTime.of(2023, 7, 30, 22, 11);
+
+			Survey survey2 = new Survey("Alkoholikysely", "Kysely Haaga-Helian opiskelijoiden alkoholitottumuksista.", sDate2, eDate2);
 			surveyRepository.save(survey2);
 			
 			Question question12 = new Question("Kuinka usein juot alkoholia viikossa?", survey2, type1);

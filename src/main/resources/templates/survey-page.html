@@ -9,7 +9,7 @@
 <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
 	th:href="@{/css/bootstrap.min.css}" />
 <link rel="stylesheet" href="/css/styles.css" />
-<script src="/js/editDescription.js"></script>
+<script src="/js/survey-page-script.js"></script>
 </head>
 <body>
 	<nav class="navbar navbar-primary bg-primary">
@@ -29,9 +29,16 @@
 		<h2 class="h2" id="survey-description">
 			<span th:text="${survey.description}"></span>
 		</h2>
+
 		<h2 class="h2" id="edit-title" style="display: none;">
 			<span >Edit survey</span>
 		</h2>
+		<div>
+		<a th:href="@{https://survey-tool-react-production.up.railway.app/survey/{id}/report(id=${survey.surveyId})}"><button>View Report</button></a></div>
+		<div><a id="responselink"
+		 th:href="@{https://survey-tool-react-production.up.railway.app/survey/{id}/response(id=${survey.surveyId})}"
+		 th:text="@{https://survey-tool-react-production.up.railway.app/survey/{id}/response(id=${survey.surveyId})}"></a>
+		 <button id="copyresponselinkbutton">Copy link</button></div>
 		<div id=edit-description-wrapper>
 			<button id="edit-description-button" type="button">Edit</button>
 			<form class="form-inline" action="#" id="description-form" method="post"
@@ -56,22 +63,25 @@
 		<!-- Form for adding a new question -->
 		<div class="new-question">
 		<form th:object="${newQuestion}" th:action="@{/save-question}"
-			method="post" action="#">
-			<label for="questionType">Question type:</label>
-			<select th:field="${newQuestion.type.type}" id="questionType" name="questionType">
+			method="post" action="#" id="questionForm">
+			<label for="questionType">Question type:</label> <select
+				th:field="${newQuestion.type.type}" id="questionType"
+				name="questionType" onchange="setFormAction()">
 				<option value="text">Text</option>
 				<option value="radio">Radio Button</option>
 				<option value="checkbox">Checkbox</option>
 			</select>
 			<div id="questionInput">
-				<label for="questionText">Question Text:</label> <textarea
-					id="questionText" name="questionText"
+				<label for="questionText">Question Text:</label>
+				<textarea id="questionText" name="questionText"
 					th:field="${newQuestion.content}" th:required="required"></textarea>
 			</div>
 			<input type="hidden" th:field="${newQuestion.survey.surveyId}">
-			<label for="selectedCount">Number of Selected Options:</label> <input
+			
+			<!--  <label for="selectedCount">Number of Selected Options:</label> <input
 				type="text" id="selectedCount" name="selectedCount"
-				th:field="${newQuestion.selectedCount}" size="1" maxlength="1">
+				th:field="${newQuestion.selectedCount}" size="1" maxlength="1">-->
+			
 			<input type="submit" value="Add">
 		</form>
 		</div>

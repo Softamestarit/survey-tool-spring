@@ -12,11 +12,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import fi.haagahelia.surveytool.domain.Option;
+import fi.haagahelia.surveytool.domain.OptionRepository;
 import fi.haagahelia.surveytool.domain.Question;
 import fi.haagahelia.surveytool.domain.QuestionRepository;
 import fi.haagahelia.surveytool.domain.QuestionTypeRepository;
 import fi.haagahelia.surveytool.domain.Survey;
 import fi.haagahelia.surveytool.domain.SurveyRepository;
+
 
 @Controller
 public class QuestionController {
@@ -26,6 +29,9 @@ public class QuestionController {
 	
 	@Autowired
 	private QuestionTypeRepository questionTypeRepository;
+	
+	@Autowired
+	private OptionRepository optionRepository;
 
 	@Autowired
 	private SurveyRepository surveyRepository;
@@ -63,9 +69,29 @@ public class QuestionController {
 	}
 
 	@PostMapping("/save-question")
-	public String saveQuestion(Question question) {
+	public String saveQuestion(Question question, Model model) {
 		questionTypeRepository.save(question.getType());
 		questionRepository.save(question);
+		// changes return value to edit-options if the user chose type checkbox/radio
+		if (question.getType().getType().contains("radio")  || question.getType().getType().contains("checkbox")) {
+			Option option = new Option(question);
+			model.addAttribute("option", option);
+			// gets questionId to connect question to option
+			model.addAttribute("question", questionRepository.findById(option.getQuestion().getQuestionId()));
+			return "edit-options";
+		}
 		return "redirect:/admin/survey/" + question.getSurvey().getSurveyId();
 	}
+	
+	@PostMapping("/add-options")
+	public String saveOptions(Option option, Model model) {
+		optionRepository.save(option);
+		
+		// reinitialises option and gets question data to display already added options
+		model.addAttribute("question", questionRepository.findById(option.getQuestion().getQuestionId()));
+		model.addAttribute("options", option.getQuestion().getOptions());
+		
+		return "edit-options";
+	}
+	
 }

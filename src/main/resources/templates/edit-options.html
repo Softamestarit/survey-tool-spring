@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Survey tool</title>
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+	<nav class="navbar navbar-primary bg-primary">
+		<a class="navbar-brand"> <img class="img-fluid"
+			src="/images/haaga-helia-logo.png" width="60%" height="60%"
+			alt="Haaga-Helia logo">
+		</a>
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item active"><a class="navbar-brand"
+				id="navbar-back" href="/admin">All your surveys</a></li>
+		</ul>
+	</nav>
+	<h1 th:text="'Question: ' + ${question.get().content}"></h1>
+	<ul th:each="option : ${options}">
+		<li th:text="*{option.content}"></li>
+	</ul>
+	<form th:object="${option}" th:action="@{/add-options}" method="post"
+		action="#">
+		<table>
+			<tr>
+				<td><label for="option">Add New Option: </label> <input
+					type="text" id="option" th:field="*{content}" /></td>
+				<td><input type="hidden" th:field="*{question}" /></td>
+			</tr>
+		</table>
+		<div>
+			<input type="submit" value="Add"></input>
+			<a th:href="'/admin/survey/' + ${question.get().getSurvey().getSurveyId()}">Save Options</a>
+		</div>
+	</form>
+</html>
+
+
