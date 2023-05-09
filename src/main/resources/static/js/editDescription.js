@@ -4,12 +4,14 @@ window.addEventListener('load', function (){
 	const heading = document.getElementById("survey-title");
 	const content = document.getElementById("survey-description");
 	const editForm = document.getElementById("description-form");
+	const editSurvey = document.getElementById("edit-title");
 	
 	editButton.addEventListener("click", () => {
 		heading.style.display = "none";
 		content.style.display = "none";
 		editButton.style.display = "none";
 		editForm.style.display = "block";
+		editSurvey.style.display = "block";
 	});
 	
 });

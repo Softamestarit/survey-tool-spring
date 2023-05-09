@@ -18,15 +18,19 @@
 			alt="Haaga-Helia logo">
 		</a>
 	</nav>
-	<div>
+	<h1>Add new survey</h1>
+	<div class="new-survey">
 		<form th:object="${newSurvey}" th:action="@{save-survey}" action="#"
 				method="post">
 				<label for="title">Title:</label>
 				<textarea id="title" th:field="*{title}" th:required="required"></textarea>
+				<br/>
 				<label for="description">Description:</label>
 				<textarea id="description" th:field="*{description}"></textarea>
+				<br/>
 				<label for="startTime">Start date and time:</label>
 				<input type="datetime-local" th:field="*{startTime}" id="startTime" th:required="required">
+				<br/>
 				<label for="endTime">End date and time:</label>
 				<input type="datetime-local" th:field="*{endTime}" id="endTime" th:required="required">
 				<input type="submit" value="Save"></input>

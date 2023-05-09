@@ -29,27 +29,32 @@
 		<h2 class="h2" id="survey-description">
 			<span th:text="${survey.description}"></span>
 		</h2>
+		<h2 class="h2" id="edit-title" style="display: none;">
+			<span >Edit survey</span>
+		</h2>
 		<div id=edit-description-wrapper>
 			<button id="edit-description-button" type="button">Edit</button>
-			<form action="#" id="description-form" method="post"
+			<form class="form-inline" action="#" id="description-form" method="post"
 				th:object="${survey}" th:action="@{/save-description}"
 				style="display: none;">
-				<label for="id"></label> <input type="hidden" id="id"
-					th:field="${survey.surveyId}"> <label for="title"></label>
-				<input type="text" th:field="${survey.title}" id="title"> <label
-					for="description"></label> <input type="text"
-					th:field="${survey.description}" id="description">
-				<label for="startTime"></label>
-					<input type="datetime-local" th:field="${survey.startTime}" id="startTime">
-				<label for="endTime"></label>
+				<label for="id" style=></label><br/> <input type="hidden" id="id"
+					th:field="${survey.surveyId}"> <label for="title">Title:</label>
+				<input type="text" th:field="${survey.title}" id="title"><br/> <label
+					for="description">Description:</label> <input type="text"
+					th:field="${survey.description}" id="description"><br/>
+				<label for="startTime">Start Time:</label>
+					<input type="datetime-local" th:field="${survey.startTime}" id="startTime"><br/>
+				<label for="endTime"> End Time:</label>
 					<input type="datetime-local" th:field="${survey.endTime}" id="endTime" >
-					<input type="submit" value="Save">
+					<input type="submit" name="action" value="Save">
+					<input type="submit" name="action" value="Cancel">
 			</form>
 		</div>
 
 		<h2 class="h2">Add a new question:</h2>
 
 		<!-- Form for adding a new question -->
+		<div class="new-question">
 		<form th:object="${newQuestion}" th:action="@{/save-question}"
 			method="post" action="#">
 			<label for="questionType">Question type:</label>
@@ -69,7 +74,7 @@
 				th:field="${newQuestion.selectedCount}" size="1" maxlength="1">
 			<input type="submit" value="Add">
 		</form>
-
+		</div>
 		<!-- Show all questions in this survey -->
 		<h2 class="h2">Questions:</h2>
 		<ol>
