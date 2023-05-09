@@ -29,9 +29,6 @@ public class QuestionController {
 	
 	@Autowired
 	private QuestionTypeRepository questionTypeRepository;
-	
-	@Autowired
-	private OptionRepository optionRepository;
 
 	@Autowired
 	private SurveyRepository surveyRepository;
@@ -78,20 +75,10 @@ public class QuestionController {
 			model.addAttribute("option", option);
 			// gets questionId to connect question to option
 			model.addAttribute("question", questionRepository.findById(option.getQuestion().getQuestionId()));
+			model.addAttribute("survey", surveyRepository.findById(question.getSurvey().getSurveyId()));
 			return "edit-options";
 		}
 		return "redirect:/admin/survey/" + question.getSurvey().getSurveyId();
-	}
-	
-	@PostMapping("/add-options")
-	public String saveOptions(Option option, Model model) {
-		optionRepository.save(option);
-		
-		// reinitialises option and gets question data to display already added options
-		model.addAttribute("question", questionRepository.findById(option.getQuestion().getQuestionId()));
-		model.addAttribute("options", option.getQuestion().getOptions());
-		
-		return "edit-options";
 	}
 	
 }
