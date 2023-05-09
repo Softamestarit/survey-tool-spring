@@ -22,6 +22,5 @@ window.addEventListener('load', function() {
 		alert("Copied the link: " + copyLink.textContent);
 	});
 	
-	src / main / resources / static / js / survey - page - script.js
 
 });
