@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import fi.haagahelia.surveytool.domain.Option;
 import fi.haagahelia.surveytool.domain.OptionRepository;
 import fi.haagahelia.surveytool.domain.QuestionRepository;
+import fi.haagahelia.surveytool.domain.SurveyRepository;
 
 @Controller
 public class OptionController {
@@ -21,6 +22,9 @@ public class OptionController {
 
 	@Autowired
 	private QuestionRepository questionRepository;
+	
+	@Autowired
+	private SurveyRepository surveyRepository;
 
 	// REST api-call which gets all options and returns them as JSON
 	@GetMapping("/options")
@@ -35,7 +39,7 @@ public class OptionController {
 		// reinitialises option and gets question data to display already added options
 		model.addAttribute("question", questionRepository.findById(option.getQuestion().getQuestionId()));
 		model.addAttribute("options", option.getQuestion().getOptions());
-		model.addAttribute("survey", option.getQuestion().getSurvey());
+		model.addAttribute("survey", surveyRepository.findById(option.getQuestion().getSurvey().getSurveyId()));
 
 		return "edit-options";
 	}
