@@ -36,10 +36,10 @@
 			<span >Edit survey</span>
 		</h2>
 		<div>
-		<a th:href="@{https://survey-tool-react-production.up.railway.app/survey/{id}/report(id=${survey.surveyId})}"><button>View Report</button></a></div>
+		<a th:href="@{https://survey-tool.herokuapp.com/survey/{id}/report(id=${survey.surveyId})}"><button>View Report</button></a></div>
 		<div><a id="responselink"
-		 th:href="@{https://survey-tool-react-production.up.railway.app/survey/{id}/response(id=${survey.surveyId})}"
-		 th:text="@{https://survey-tool-react-production.up.railway.app/survey/{id}/response(id=${survey.surveyId})}"></a>
+		 th:href="@{https://survey-tool.herokuapp.com/survey/{id}/response(id=${survey.surveyId})}"
+		 th:text="@{https://survey-tool.herokuapp.com/survey/{id}/response(id=${survey.surveyId})}"></a>
 		 <button id="copyresponselinkbutton">Copy link</button></div>
 		 
 		<div id=edit-description-wrapper>
