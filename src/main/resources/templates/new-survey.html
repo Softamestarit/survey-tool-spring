@@ -9,7 +9,8 @@
 <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
 	th:href="@{/css/bootstrap.min.css}" />
 <link rel="stylesheet" href="/css/styles.css" />
-<script src="/js/editDescription.js"></script>
+<script src="/js/survey-page-script.js"></script>
+<script src="/js/new-survey-script.js"></script>
 </head>
 <body>
 	<nav class="navbar navbar-primary bg-primary">
@@ -18,19 +19,25 @@
 			alt="Haaga-Helia logo">
 		</a>
 	</nav>
-	<div>
+	<h1>Add new survey</h1>
+	<div class="new-survey">
 		<form th:object="${newSurvey}" th:action="@{save-survey}" action="#"
 				method="post">
 				<label for="title">Title:</label>
 				<textarea id="title" th:field="*{title}" th:required="required"></textarea>
+				<br/>
 				<label for="description">Description:</label>
 				<textarea id="description" th:field="*{description}"></textarea>
+				<br/>
 				<label for="startTime">Start date and time:</label>
 				<input type="datetime-local" th:field="*{startTime}" id="startTime" th:required="required">
+				<br/>
 				<label for="endTime">End date and time:</label>
 				<input type="datetime-local" th:field="*{endTime}" id="endTime" th:required="required">
 				<input type="submit" value="Save"></input>
 			</form>
+			
+		<a  id="goBackButton" href="/admin"><button>Go back</button></a>
 	</div>
 	</body>
 	</html>
