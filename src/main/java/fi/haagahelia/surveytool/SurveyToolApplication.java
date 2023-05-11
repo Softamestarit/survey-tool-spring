@@ -30,9 +30,9 @@ public class SurveyToolApplication {
 
 		return (args) -> {
 			
+			// Survey 1 test data 
 			LocalDateTime sDate1 = LocalDateTime.of(2023, 3, 26, 22, 11);
 			LocalDateTime eDate1 = LocalDateTime.of(2023, 7, 30, 22, 11);
-			
 						
 			Survey survey1 = new Survey("Liikuntakysely", "Kysely Haaga-Helian opiskelijoiden liikuntatottumuksista.", sDate1, eDate1);
 			
@@ -64,7 +64,7 @@ public class SurveyToolApplication {
 			optionRepository.save(option1);
 			optionRepository.save(option2);
 
-			//testi dataa vastausten näyttämiseen 
+			// Survey 2 test data to show answers 
 			LocalDateTime sDate2 = LocalDateTime.of(2023, 5, 26, 22, 11);
 			LocalDateTime eDate2 = LocalDateTime.of(2023, 7, 30, 22, 11);
 
@@ -93,6 +93,40 @@ public class SurveyToolApplication {
 			answerRepository.save(answer221);
 			answerRepository.save(answer32);
 			answerRepository.save(answer321);
+			
+			// Survey 3 test data to show diagram
+			
+			LocalDateTime sDate3 = LocalDateTime.of(2023, 5, 26, 22, 11);
+			LocalDateTime eDate3 = LocalDateTime.of(2023, 7, 30, 22, 11);
+
+			Survey survey3 = new Survey("Hyvinvointikysely", "Kysely Haaga-Helian opiskelijoiden hyvinvoinnista.", sDate3, eDate3);
+			surveyRepository.save(survey3);
+			
+			
+			
+			Question question111 = new Question("Oletko minkä vuoden opiskelija?", survey3, type2);
+			Question question222 = new Question("Kuinka monta tuntia nukut keskimäärin yössä?", survey3, type2);
+			Question question333 = new Question("", survey3, type1);
+			
+			questionRepository.save(question111);
+			questionRepository.save(question222);
+			questionRepository.save(question333);
+			
+			Option option11 = new Option("1. vuoden", question111);
+			Option option22 = new Option("2. vuoden", question111);
+			Option option33 = new Option("3. vuoden", question111);
+			
+			optionRepository.save(option11);
+			optionRepository.save(option22);
+			optionRepository.save(option33);
+			
+			Answer answer111 = new Answer();
+			answer111.getOptions().add(option11);
+			
+			
+			answerRepository.save(answer111);
+
+			
 		};
 	}
 }

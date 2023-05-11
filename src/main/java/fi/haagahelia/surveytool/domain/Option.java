@@ -1,6 +1,7 @@
 package fi.haagahelia.surveytool.domain;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -9,8 +10,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 
 @Entity
 public class Option {
@@ -24,10 +25,19 @@ public class Option {
 	@JsonIgnoreProperties("options")
 	@JoinColumn(name="questionId")
 	private Question question;
+	
+	@ManyToMany(mappedBy = "options")
+	@JsonIgnoreProperties("options")
+	private Set<Answer> answers = new HashSet<>();
 
 	// Constructors
 	
 	public Option() {}
+
+	public Option(Set<Answer> answers) {
+		super();
+		this.answers = answers;
+	}
 
 	public Option(Long optionId, String content, Question question) {
 		super();
@@ -77,9 +87,19 @@ public class Option {
 	public void setQuestion(Question question) {
 		this.question = question;
 	}
+	
+	public Set<Answer> getAnswers() {
+		return answers;
+	}
+
+	public void setAnswers(Set<Answer> answers) {
+		this.answers = answers;
+	}
 
 	@Override
 	public String toString() {
-		return "QuestionType [optionId=" + optionId + ", content=" + content + "]";
+		return "Option [optionId=" + optionId + ", content=" + content + ", question=" + question + ", answers="
+				+ answers + "]";
 	}	
+	
 }
