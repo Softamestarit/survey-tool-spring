@@ -97,17 +97,15 @@ public class SurveyToolApplication {
 			
 			// Survey 3 test data to show diagram
 			
-			LocalDateTime sDate3 = LocalDateTime.of(2023, 5, 26, 22, 11);
+			LocalDateTime sDate3 = LocalDateTime.of(2023, 5, 11, 22, 11);
 			LocalDateTime eDate3 = LocalDateTime.of(2023, 7, 30, 22, 11);
 
 			Survey survey3 = new Survey("Hyvinvointikysely", "Kysely Haaga-Helian opiskelijoiden hyvinvoinnista.", sDate3, eDate3);
 			surveyRepository.save(survey3);
 			
-			
-			
 			Question question111 = new Question("Oletko minkä vuoden opiskelija?", survey3, type2);
 			Question question222 = new Question("Kuinka monta tuntia nukut keskimäärin yössä?", survey3, type2);
-			Question question333 = new Question("", survey3, type1);
+			Question question333 = new Question("Tupakoitko?", survey3, type1);
 			
 			questionRepository.save(question111);
 			questionRepository.save(question222);
@@ -121,12 +119,91 @@ public class SurveyToolApplication {
 			optionRepository.save(option22);
 			optionRepository.save(option33);
 			
-			Answer answer111 = new Answer();
-			answer111.getOptions().add(option11);
-			
-			answerRepository.save(answer111);
+			Answer answer1 = new Answer();
+			answer1.getOptions().add(option11);
+			answerRepository.save(answer1);
 
+			Answer answer2 = new Answer();
+			answer2.getOptions().add(option11);
+			answerRepository.save(answer2);
 			
+			Answer answer3 = new Answer();
+			answer3.getOptions().add(option22);
+			answerRepository.save(answer3);
+			
+			Answer answer4 = new Answer();
+			answer4.getOptions().add(option22);
+			answerRepository.save(answer4);
+			
+			Answer answer5 = new Answer();
+			answer5.getOptions().add(option22);
+			answerRepository.save(answer5);
+			
+			Answer answer6 = new Answer();
+			answer6.getOptions().add(option33);
+			answerRepository.save(answer6);
+			
+			Option option44 = new Option("alle 6 tuntia", question222);
+			Option option55 = new Option("6-8 tuntia", question222);
+			Option option66 = new Option("yli 8 tuntia", question222);
+			
+			optionRepository.save(option44);
+			optionRepository.save(option55);
+			optionRepository.save(option66);
+			
+			Answer answer7 = new Answer();
+			answer7.getOptions().add(option44);
+			answerRepository.save(answer7);
+
+			Answer answer8 = new Answer();
+			answer8.getOptions().add(option55);
+			answerRepository.save(answer8);
+			
+			Answer answer9 = new Answer();
+			answer9.getOptions().add(option55);
+			answerRepository.save(answer9);
+			
+			Answer answer10 = new Answer();
+			answer10.getOptions().add(option44);
+			answerRepository.save(answer10);
+			
+			Answer answer11 = new Answer();
+			answer11.getOptions().add(option55);
+			answerRepository.save(answer11);
+			
+			Answer answer122 = new Answer();
+			answer122.getOptions().add(option66);
+			answerRepository.save(answer122);
+			
+			Option option77 = new Option("Kyllä", question333);
+			Option option88 = new Option("En", question333);
+			
+			optionRepository.save(option77);
+			optionRepository.save(option88);
+			
+			Answer answer13 = new Answer();
+			answer13.getOptions().add(option77);
+			answerRepository.save(answer13);
+
+			Answer answer14 = new Answer();
+			answer14.getOptions().add(option88);
+			answerRepository.save(answer14);
+			
+			Answer answer15 = new Answer();
+			answer15.getOptions().add(option88);
+			answerRepository.save(answer15);
+			
+			Answer answer16 = new Answer();
+			answer16.getOptions().add(option88);
+			answerRepository.save(answer16);
+			
+			Answer answer17 = new Answer();
+			answer17.getOptions().add(option88);
+			answerRepository.save(answer17);
+			
+			Answer answer18 = new Answer();
+			answer18.getOptions().add(option77);
+			answerRepository.save(answer18);
 		};
 	}
 }
