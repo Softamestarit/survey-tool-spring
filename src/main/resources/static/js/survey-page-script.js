@@ -5,6 +5,7 @@ window.addEventListener('load', function() {
 	const content = document.getElementById("survey-description");
 	const editForm = document.getElementById("description-form");
 	const editSurvey = document.getElementById("edit-title");
+	const navbarback = document.getElementById("navbar-back");
 	
 	editButton.addEventListener("click", () => {
 		heading.style.display = "none";
@@ -22,5 +23,12 @@ window.addEventListener('load', function() {
 		alert("Copied the link: " + copyLink.textContent);
 	});
 	
+	navbarback.addEventListener("click", (event) => {
+  event.preventDefault();
+  const isConfirmed = confirm('Are you sure you want to leave?');
+  if (isConfirmed) {
+    window.location.href = '/admin';
+  }
+	});
 
 });
