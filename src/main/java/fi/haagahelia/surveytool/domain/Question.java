@@ -20,6 +20,7 @@ public class Question {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long questionId;
+	
 	@Column(nullable=false)
 	private String content;
 	

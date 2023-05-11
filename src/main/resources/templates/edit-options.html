@@ -21,6 +21,7 @@
 				id="navbar-back" href="/admin">All your surveys</a></li>
 		</ul>
 	</nav>
+	<div class="content">
 	<h1 th:text="'Survey: ' + ${survey.get().getTitle()}"></h1>
 	<h2 th:text="'Question: ' + ${question.get().content}"></h2>
 	<h3 th:text="'Type: ' + ${question.get().getType().getType()}"></h3>
@@ -41,6 +42,7 @@
 			<a th:href="'/admin/survey/' + ${question.get().getSurvey().getSurveyId()}">Save Options</a>
 		</div>
 	</form>
+	</div>
 </html>
 
 

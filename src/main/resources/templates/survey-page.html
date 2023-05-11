@@ -31,15 +31,17 @@
 		</h2>
 
 		<h2 class="h2" id="edit-title" style="display: none;">
-			<span>Edit survey</span>
+			<span>Edit survey:</span>
 		</h2>
 		<div>
 		<a th:href="@{https://survey-tool.herokuapp.com/survey/{id}/report(id=${survey.surveyId})}"><button>View Report</button></a></div>
-		<div><a id="responselink"
+		<div>
+		<div>
+		<h2 class="h2">Link for answering this survey:</h2><a id="responselink"
 		 th:href="@{https://survey-tool.herokuapp.com/survey/{id}/response(id=${survey.surveyId})}"
 		 th:text="@{https://survey-tool.herokuapp.com/survey/{id}/response(id=${survey.surveyId})}"></a>
 		 <button id="copyresponselinkbutton">Copy link</button></div>
-
+		</div>
 		<div id=edit-description-wrapper>
 			<button id="edit-description-button" type="button">Edit</button>
 			<form class="form-inline" action="#" id="description-form"
@@ -48,8 +50,8 @@
 				<label for="id" style=></label><br /> <input type="hidden" id="id"
 					th:field="${survey.surveyId}"> <label for="title">Title:</label>
 				<input type="text" th:field="${survey.title}" id="title"><br />
-				<label for="description">Description:</label> <input type="text"
-					th:field="${survey.description}" id="description"><br /> <label
+				<label for="description">Description:</label> 
+				<textarea th:field="${survey.description}" id="description"></textarea><br /> <label
 					for="startTime">Start Time:</label> <input type="datetime-local"
 					th:field="${survey.startTime}" id="startTime"><br /> <label
 					for="endTime"> End Time:</label> <input type="datetime-local"
@@ -76,7 +78,7 @@
 					<label for="questionText">Question Text:</label>
 					<textarea id="questionText" name="questionText"
 						th:field="${newQuestion.content}" th:required="required"></textarea>
-				</div>
+				
 				<input type="hidden" th:field="${newQuestion.survey.surveyId}">
 
 				<!--  <label for="selectedCount">Number of Selected Options:</label> <input
@@ -84,6 +86,7 @@
 				th:field="${newQuestion.selectedCount}" size="1" maxlength="1">-->
 
 				<input type="submit" value="Add">
+				</div>
 			</form>
 		</div>
 		<!-- Show all questions in this survey -->
