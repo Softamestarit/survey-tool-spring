@@ -123,7 +123,6 @@ public class SurveyToolApplication {
 			Answer answer111 = new Answer();
 			answer111.getOptions().add(option11);
 			
-			
 			answerRepository.save(answer111);
 
 			
