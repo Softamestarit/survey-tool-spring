@@ -207,6 +207,11 @@ public class SurveyToolApplication {
 			Answer answer18 = new Answer();
 			answer18.getOptions().add(option77);
 			answerRepository.save(answer18);
+			
+			Answer answer19 = new Answer("Kivaa kesää! :)", question444);
+			answerRepository.save(answer19);
+			Answer answer20 = new Answer("Ei ole.", question444);
+			answerRepository.save(answer20);
 		};
 	}
 }
