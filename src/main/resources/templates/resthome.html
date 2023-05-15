@@ -9,81 +9,289 @@
 	<h1>REST Home Page</h1>
 	
 	<h2>All surveys</h2>
-		<p>Method: GET Endpoint: <a href="/surveys">/surveys</a></p>
+		<strong><p>Method: </strong> GET <strong>Endpoint: </strong><a href="/surveys">/surveys</a></p>
 		<p>JSON Example: </p>
 		<pre><code>
-		[
+[
+	{
+		"surveyId": 1,
+		"title": "Liikuntakysely",
+		"description": "Kysely Haaga-Helian opiskelijoiden liikuntatottumuksista.",
+		"startTime": "2023-03-26T22:11:00",
+		"endTime": "2023-07-30T22:11:00",
+		"questions": [
 			{
-				"surveyId": 1,
-				"title": "Liikuntakysely",
-				"questions": [
-						{
-							"questionId": 1,
-							"content": "Kuinka monta kertaa liikut viikossa vähintään puoli tuntia?",
-							"answers": []
-						},
-						{
-							"questionId": 2,
-							"content": "Koetko liikkuvasi tarpeeksi?",
-							"answers": []
-						}
-					]
+				"questionId": 1,
+				"content": "Mikä innostaisi sinua liikkumaan enemmän?",
+				"type": {
+					"typeId": 1,
+					"type": "text"
+				},
+				"answers": [],
+				"options": []
 			},
 			{
-				"surveyId": 2,
-				"title": "Ulkoilukysely",
-				"questions": [
-						{
-							"questionId": 1,
-							"content": "Kuinka monta tuntia ulkoilet viikossa?",
-							"answers": []
-						}
-					]
+				"questionId": 2,
+				"content": "Koetko liikkuvasi tarpeeksi?",
+				"type": {
+					"typeId": 2,
+					"type": "radio"
+				},
+				"answers": [],
+				"options": [
+					{
+						"optionId": 1,
+						"content": "Ei",
+						"answers": []
+					},
+					{
+						"optionId": 2,
+						"content": "Kyllä",
+						"answers": []
+					}
+				]
 			}
-			
 		]
-		</code></pre>
-		
-		<h2>Survey By Id</h2>
-		<p>Method: GET Endpoint: /surveys{id} <a href="/surveys/1"></a>/surveys/1</p>
-		<p>JSON Example: </p>
-		<pre><code>
-[{
- "surveyId": 3,
- "title": "Liikuntakysely",
- "questions": [
-	{
-	 	"questionId": 1,
-	 	"content": "Kuinka monta kertaa liikut viikossa vähintään puoli tuntia?",
-	 	"answers": []
 	},
 	{
-	 	"questionId": 2,
-	 	"content": "Koetko liikkuvasi tarpeeksi?",
-	 	"answers": []
+		"surveyId": 2,
+		"title": "Alkoholikysely",
+		"description": "Kysely Haaga-Helian opiskelijoiden alkoholitottumuksista.",
+		"startTime": "2023-05-26T22:11:00",
+		"endTime": "2023-07-30T22:11:00",
+		"questions": [
+			{
+				"questionId": 6,
+				"content": "Kuinka usein juot alkoholia viikossa?",
+				"type": {
+					"typeId": 1,
+					"type": "text"
+				},
+				"answers": [
+					{
+						"answerId": 1,
+						"text": "Kerran.",
+						"options": []
+					},
+					{
+						"answerId": 2,
+						"text": "Kaksi kertaa.",
+						"options": []
+					}
+				],
+				"options": []
+			}
+		]
 	}
-   ]
-}]
-		</code></pre>
+]
+</code></pre>
 		
-		<h2>New Survey</h2>
-		<p>Method: POST Endpoint: /surveys (Test with PostMan etc.)</p>
+		<h2>Survey By Id</h2>
+		<strong><p>Method: </strong> GET <strong>Endpoint:</strong> /surveys{id} <a href="/surveys/2">/surveys/2</a></p>
 		<p>JSON Example: </p>
 		<pre><code>
 {
- "title": "Kirjasto kysely",
- "questions": [
-   	{
-   		"content": "Kuinka usein lainaat kirjoja Haaga-Helian kirjastosta?"
-   	},
-   	{
-   		"content": "Hyödynnätkö kirjaston työskentelytiloja?"
-   	}
-  ]
+	"surveyId": 2,
+	"title": "Alkoholikysely",
+	"description": "Kysely Haaga-Helian opiskelijoiden alkoholitottumuksista.",
+	"startTime": "2023-05-26T22:11:00",
+	"endTime": "2023-07-30T22:11:00",
+	"questions": [
+		{
+			"questionId": 6,
+			"content": "Kuinka usein juot alkoholia viikossa?",
+			"type": {
+				"typeId": 1,
+				"type": "text"
+			},
+			"answers": [
+				{
+					"answerId": 1,
+					"text": "Kerran.",
+					"options": []
+				},
+				{
+					"answerId": 2,
+					"text": "Kaksi kertaa.",
+					"options": []
+				}
+			],
+			"options": []
+		},
+		{
+			"questionId": 7,
+			"content": "Montako alkoholiannosta juot viikossa?",
+			"type": {
+				"typeId": 1,
+				"type": "text"
+			},
+			"answers": [
+				{
+					"answerId": 3,
+					"text": "Seitsemän",
+					"options": []
+				},
+				{
+					"answerId": 4,
+					"text": "Kolme.",
+					"options": []
+				}
+			],
+			"options": []
+		},
+		{
+			"questionId": 8,
+			"content": "Oletko huolissasi omasta alkoholin kulutuksesta?",
+			"type": {
+				"typeId": 1,
+				"type": "text"
+			},
+			"answers": [
+				{
+					"answerId": 5,
+					"text": "En ole.",
+					"options": []
+				},
+				{
+					"answerId": 6,
+					"text": "Enpä oikeastaan.",
+					"options": []
+				}
+			],
+			"options": []
+		}
+	]
 }
+		</code></pre>
+		
+		<h2>All questions</h2>
+		<strong><p>Method:</strong> GET <strong>Endpoint:</strong> <a href="/questions">/questions</a></p>
+		<p>JSON Example: </p>
+		<pre><code>
+[
+	{
+		"questionId": 1,
+		"content": "Mikä innostaisi sinua liikkumaan enemmän?",
+		"survey": {
+			"surveyId": 1,
+			"title": "Liikuntakysely",
+			"description": "Kysely Haaga-Helian opiskelijoiden liikuntatottumuksista.",
+			"startTime": "2023-03-26T22:11:00",
+			"endTime": "2023-07-30T22:11:00"
+		},
+		"type": {
+			"typeId": 1,
+			"type": "text"
+		},
+		"answers": [],
+		"options": []
+	},
+	{
+		"questionId": 2,
+		"content": "Koetko liikkuvasi tarpeeksi?",
+		"survey": {
+			"surveyId": 1,
+			"title": "Liikuntakysely",
+			"description": "Kysely Haaga-Helian opiskelijoiden liikuntatottumuksista.",
+			"startTime": "2023-03-26T22:11:00",
+			"endTime": "2023-07-30T22:11:00"
+		},
+		"type": {
+			"typeId": 2,
+			"type": "radio"
+		},
+		"answers": [],
+		"options": [
+			{
+				"optionId": 1,
+				"content": "Ei",
+				"answers": []
+			},
+			{
+				"optionId": 2,
+				"content": "Kyllä",
+				"answers": []
+			}
+		]
+	}
+]
+
 
 		
 		</code></pre>
 		
+		<h2>Question by id</h2>
+		<strong><p>Method: </strong> GET <strong>Endpoint:</strong> <a href="/questions/3">/questions/3</a></p>
+		<p>JSON Example: </p>
+		<pre><code>
+{
+	"questionId": 3,
+	"content": "Koetko lähialueellasi olevan riittävästi liikuntapaikkoja?",
+	"survey": {
+		"surveyId": 1,
+		"title": "Liikuntakysely",
+		"description": "Kysely Haaga-Helian opiskelijoiden liikuntatottumuksista.",
+		"startTime": "2023-03-26T22:11:00",
+		"endTime": "2023-07-30T22:11:00"
+	},
+	"type": {
+		"typeId": 1,
+		"type": "text"
+	},
+	"answers": [],
+	"options": []
+}
+	
+		</code></pre>
+		
+		<h2>All options</h2>
+		<strong><p>Method: </strong> GET <strong>Endpoint:</strong> <a href="/options">/options</a></p>
+		<p>JSON Example: </p>
+		<pre><code>
+[
+	{
+		"optionId": 1,
+		"content": "Ei",
+		"question": {
+			"questionId": 2,
+			"content": "Koetko liikkuvasi tarpeeksi?",
+			"survey": {
+				"surveyId": 1,
+				"title": "Liikuntakysely",
+				"description": "Kysely Haaga-Helian opiskelijoiden liikuntatottumuksista.",
+				"startTime": "2023-03-26T22:11:00",
+				"endTime": "2023-07-30T22:11:00"
+			},
+			"type": {
+				"typeId": 2,
+				"type": "radio"
+			},
+			"answers": []
+		},
+		"answers": []
+	},
+	{
+		"optionId": 2,
+		"content": "Kyllä",
+		"question": {
+			"questionId": 2,
+			"content": "Koetko liikkuvasi tarpeeksi?",
+			"survey": {
+				"surveyId": 1,
+				"title": "Liikuntakysely",
+				"description": "Kysely Haaga-Helian opiskelijoiden liikuntatottumuksista.",
+				"startTime": "2023-03-26T22:11:00",
+				"endTime": "2023-07-30T22:11:00"
+			},
+			"type": {
+				"typeId": 2,
+				"type": "radio"
+			},
+			"answers": []
+		},
+		"answers": []
+	}
+]	
+		</code></pre>		
 </body>
 </html>
