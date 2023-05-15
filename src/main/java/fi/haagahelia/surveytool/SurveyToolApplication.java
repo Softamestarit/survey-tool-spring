@@ -106,10 +106,13 @@ public class SurveyToolApplication {
 			Question question111 = new Question("Oletko minkä vuoden opiskelija?", survey3, type2);
 			Question question222 = new Question("Kuinka monta tuntia nukut keskimäärin yössä?", survey3, type2);
 			Question question333 = new Question("Tupakoitko?", survey3, type1);
+			Question question444 = new Question("Mietteitä?", survey3, type1);
+
 			
 			questionRepository.save(question111);
 			questionRepository.save(question222);
 			questionRepository.save(question333);
+			questionRepository.save(question444);
 			
 			Option option11 = new Option("1. vuoden", question111);
 			Option option22 = new Option("2. vuoden", question111);
