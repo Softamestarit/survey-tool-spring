@@ -46,13 +46,9 @@ public class SurveyToolApplication {
 			questionTypeRepository.save(type2);
 			questionTypeRepository.save(type3);
 
-			Question question2 = new Question("Koetko liikkuvasi tarpeeksi?", survey1, type2);
-			
-			Option option1 = new Option("Ei", question2);
-			Option option2 = new Option("Kyllä", question2);
-			
-			Question question3 = new Question("Koetko lähialueellasi olevan riittävästi liikuntapaikkoja?", survey1, type1);
-			Question question4 = new Question("Tukeeko koulu riittävästi liikkumistasi?", survey1, type1);
+			Question question2 = new Question("Montako tuntia liikut viikossa?", survey1, type1);
+			Question question3 = new Question("Lempi liikuntalajisi?", survey1, type1);
+			Question question4 = new Question("Millaista apua liikkunasta on arkeesi?", survey1, type1);
 			Question question5 = new Question("Miten koulu voisi tukea liikkumistasi paremmin?", survey1, type1);
 			Question question1 = new Question("Mikä innostaisi sinua liikkumaan enemmän?", survey1, type1);
 
@@ -61,9 +57,6 @@ public class SurveyToolApplication {
 			questionRepository.save(question3);
 			questionRepository.save(question4);
 			questionRepository.save(question5);
-			
-			optionRepository.save(option1);
-			optionRepository.save(option2);
 
 			// Survey 2 test data to show answers 
 			LocalDateTime sDate2 = LocalDateTime.of(2023, 5, 26, 22, 11);
